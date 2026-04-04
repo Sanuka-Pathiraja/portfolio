@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { Suspense, lazy } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { Suspense, lazy, useEffect } from 'react'
+import { AnimatePresence, MotionConfig } from 'framer-motion'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 
@@ -9,6 +9,8 @@ const Projects = lazy(() => import('./pages/Projects'))
 const Contact = lazy(() => import('./pages/Contact'))
 const About = lazy(() => import('./pages/About'))
 const Resume = lazy(() => import('./pages/Resume'))
+const ProjectCaseStudy = lazy(() => import('./pages/ProjectCaseStudy'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 // Loading fallback component
 const PageLoader = () => (
@@ -19,17 +21,57 @@ const PageLoader = () => (
 
 export default function App() {
   const location = useLocation()
+
+  useEffect(() => {
+    let lenis
+    let rafId
+    let isMounted = true
+
+    const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (shouldReduceMotion) {
+      return undefined
+    }
+
+    import('lenis').then(({ default: Lenis }) => {
+      if (!isMounted) return
+
+      lenis = new Lenis({
+        duration: 1,
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.1,
+      })
+
+      const raf = (time) => {
+        lenis.raf(time)
+        rafId = requestAnimationFrame(raf)
+      }
+
+      rafId = requestAnimationFrame(raf)
+    })
+
+    return () => {
+      isMounted = false
+      if (rafId) cancelAnimationFrame(rafId)
+      if (lenis) lenis.destroy()
+    }
+  }, [])
+
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<Suspense fallback={<PageLoader />}><About /></Suspense>} />
-          <Route path="projects" element={<Suspense fallback={<PageLoader />}><Projects /></Suspense>} />
-          <Route path="contact" element={<Suspense fallback={<PageLoader />}><Contact /></Suspense>} />
-          <Route path="resume" element={<Suspense fallback={<PageLoader />}><Resume /></Suspense>} />
-        </Route>
-      </Routes>
-    </AnimatePresence>
+    <MotionConfig reducedMotion="user">
+      <AnimatePresence mode="wait" initial={false}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<Suspense fallback={<PageLoader />}><About /></Suspense>} />
+            <Route path="projects" element={<Suspense fallback={<PageLoader />}><Projects /></Suspense>} />
+            <Route path="projects/:projectId" element={<Suspense fallback={<PageLoader />}><ProjectCaseStudy /></Suspense>} />
+            <Route path="contact" element={<Suspense fallback={<PageLoader />}><Contact /></Suspense>} />
+            <Route path="resume" element={<Suspense fallback={<PageLoader />}><Resume /></Suspense>} />
+            <Route path="*" element={<Suspense fallback={<PageLoader />}><NotFound /></Suspense>} />
+          </Route>
+        </Routes>
+      </AnimatePresence>
+    </MotionConfig>
   )
 }

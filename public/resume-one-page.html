@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanuka Pathiraja - Software Engineering Intern CV</title>
+    <style>
+      :root {
+        --primary: #1a365d;
+        --primary-light: #2b6cb0;
+        --text-main: #2d3748;
+        --text-light: #4a5568;
+        --bg-sidebar: #f1f8fd;
+        --accent-line: #e2e8f0;
+      }
+
+      /* Strict A4 PDF Optimization */
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      @media print {
+        html,
+        body {
+          margin: 0 !important;
+          padding: 0 !important;
+          width: 210mm !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          overflow: hidden !important;
+        }
+        body {
+          background: #fff !important;
+        }
+        .resume-container {
+          box-shadow: none;
+          border: none;
+          margin: 0 !important;
+          width: 210mm !important;
+          min-height: 297mm !important;
+          height: 297mm !important; /* Forces exact A4 height */
+          max-height: 297mm !important;
+          overflow: hidden !important; /* Prevents the 4-page glitch */
+          page-break-inside: avoid !important;
+          break-inside: avoid-page !important;
+          page-break-after: always !important;
+          break-after: page !important;
+        }
+        .resume-container:nth-of-type(2) {
+          page-break-after: auto !important;
+          break-after: auto !important;
+        }
+        .resume-container:nth-of-type(n + 3) {
+          display: none !important;
+        }
+      }
+
+      body {
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        margin: 0;
+        padding: 10px 0;
+        background: #f1f5f9;
+        color: var(--text-main);
+        line-height: 1.48;
+      }
+
+      .resume-container {
+        display: flex;
+        width: 210mm;
+        min-width: 210mm;
+        max-width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        max-height: 297mm;
+        margin: 0 auto 16px auto;
+        background: #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+      }
+      .resume-container:last-child {
+        margin-bottom: 0;
+      }
+
+      /* --- SIDEBAR --- */
+      .sidebar {
+        width: 35%;
+        background-color: var(--bg-sidebar);
+        padding: 14px 30px; /* Consistent top and bottom page spacing */
+        box-sizing: border-box;
+        border-right: 1px solid #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 26px; /* Natural vertical rhythm without forced stretching */
+      }
+
+      .content-block {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .name-container {
+        margin-top: -6px;
+      }
+
+      .name-container h1 {
+        margin: 0;
+        font-size: 2.1em;
+        color: var(--primary);
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .name-container h2 {
+        margin: 6px 0 15px 0;
+        font-size: 1.05em;
+        font-weight: 600;
+        color: var(--primary-light);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .contact-item {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        color: var(--text-main);
+      }
+      .contact-item svg {
+        width: 16px;
+        height: 16px;
+        fill: var(--primary);
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+      .contact-item a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .sidebar-title {
+        font-size: 1.15em;
+        color: var(--primary);
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--primary-light);
+        padding-bottom: 4px;
+        margin: 0 0 10px 0;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+      }
+
+      .sidebar-text {
+        font-size: 0.95em;
+        margin: 0;
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      .skill-category {
+        font-weight: 700;
+        font-size: 0.95em;
+        margin: 0 0 4px 0;
+        color: var(--primary);
+      }
+
+      ul.sidebar-list {
+        margin: 0 0 12px 0;
+        padding-left: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      ul.sidebar-list:last-child {
+        margin-bottom: 0;
+      }
+
+      ul.sidebar-list li {
+        font-size: 0.9em;
+        color: var(--text-light);
+        margin: 0;
+        line-height: 1.48;
+      }
+
+      /* --- MAIN CONTENT --- */
+      .main-content {
+        width: 65%;
+        padding: 14px 40px; /* Consistent top and bottom page spacing */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 22px; /* Keep sections compact and visually balanced */
+      }
+
+      /* Page 2: raise Core Competencies heading for visual alignment */
+      .resume-container:nth-of-type(2) .sidebar .content-block:first-child .sidebar-title {
+        margin-top: -4px;
+      }
+
+      /* Page 2: lower Additional Projects heading */
+      .resume-container:nth-of-type(2) .main-content .content-block:first-child .section-title {
+        margin-top: 32px;
+      }
+
+      /* Page 2: raise References block by 10px */
+      .resume-container:nth-of-type(2) .main-content .content-block:last-child {
+        margin-top: -5px;
+      }
+
+      /* Page 2: raise Leadership & Activities section by 5px */
+      .resume-container:nth-of-type(2) .main-content .content-block:nth-child(2) {
+        margin-top: -5px;
+      }
+
+      /* First page only: center content vertically so top/bottom margins are equal */
+      .resume-container:first-of-type .sidebar,
+      .resume-container:first-of-type .main-content {
+        justify-content: center;
+      }
+
+      /* Second page only: also center content vertically for equal top/bottom margins */
+      .resume-container:nth-of-type(2) .sidebar,
+      .resume-container:nth-of-type(2) .main-content {
+        justify-content: center;
+      }
+
+      .section-title {
+        font-size: 1.25em;
+        color: var(--primary);
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--primary-light);
+        padding-bottom: 4px;
+        margin: 0 0 10px 0;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+      }
+
+      p.summary {
+        font-size: 0.95em;
+        color: var(--text-light);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .project-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .item-title {
+        font-size: 1.15em;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .item-date {
+        font-size: 0.9em;
+        color: var(--text-light);
+        font-weight: 600;
+        font-style: italic;
+      }
+      .item-tech {
+        font-size: 0.9em;
+        font-weight: 700;
+        color: var(--primary-light);
+        margin: 2px 0;
+      }
+
+      ul.main-list {
+        margin: 4px 0 0 0;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      ul.main-list li {
+        font-size: 0.9em;
+        color: var(--text-light);
+        margin: 0;
+        line-height: 1.55;
+      }
+
+      .project-item + .project-item {
+        border-top: 1px solid var(--accent-line);
+        padding-top: 14px;
+        margin-top: 6px;
+      }
+
+      .refs-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0;
+        gap: 20px;
+      }
+      .ref-box {
+        width: 48%;
+        font-size: 0.85em;
+        color: var(--text-light);
+        line-height: 1.5;
+      }
+      .ref-box strong {
+        color: var(--primary);
+        font-size: 1.1em;
+        display: block;
+        margin-bottom: 2px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="resume-container">
+      <div class="sidebar">
+        <div class="content-block">
+          <div class="name-container">
+            <h1>Sanuka Pathiraja</h1>
+            <h2>Computer Science Undergraduate</h2>
+          </div>
+
+          <div>
+            <div class="contact-item">
+              <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
+                />
+              </svg>
+              Western Province, Ja Ela
+            </div>
+
+            <div class="contact-item">
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
+                />
+              </svg>
+              <a href="mailto:sanukapathiraja@gmail.com"
+                >sanukapathiraja@gmail.com</a
+              >
+            </div>
+
+            <div class="contact-item">
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"
+                />
+              </svg>
+              +94 77 178 1721
+            </div>
+
+            <div class="contact-item">
+              <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+                />
+              </svg>
+              <a href="https://linkedin.com/in/sanukapathiraja"
+                >Sanuka Pathiraja</a
+              >
+            </div>
+
+            <div class="contact-item">
+              <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+                />
+              </svg>
+              <a href="https://github.com/Sanuka-Pathiraja">Sanuka-Pathiraja</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="sidebar-title">Education</div>
+          <div class="sidebar-text">
+            <strong style="color: var(--text-main); font-size: 1.05em"
+              >BSc Computer Science</strong
+            ><br />
+            University of Westminster<br />
+            <span style="color: var(--primary-light); font-weight: 600"
+              >Expected 2028 (2nd Year)</span
+            >
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="sidebar-title">Technical Skills</div>
+
+          <div class="skill-category">Languages</div>
+          <ul class="sidebar-list">
+            <li>Python (Scripting & Backend)</li>
+            <li>Java</li>
+            <li>JavaScript</li>
+            <li>Dart</li>
+            <li>HTML/CSS, SQL</li>
+          </ul>
+
+          <div class="skill-category">Frameworks, ML & UI</div>
+          <ul class="sidebar-list">
+            <li>Node.js, Flutter</li>
+            <li>TensorFlow, PyTorch, pandas</li>
+            <li>scikit-learn, Figma</li>
+          </ul>
+
+          <div class="skill-category">Tools & Core Concepts</div>
+          <ul class="sidebar-list">
+            <li>Git / GitHub (Version Control)</li>
+            <li>REST API Architecture</li>
+            <li>Database Administration (PostgreSQL)</li>
+            <li>Client-Server Architecture</li>
+            <li>Clean Code & Refactoring</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="content-block">
+          <div class="section-title">Professional Summary</div>
+          <p class="summary">
+Second year Computer Science student at the University of Westminster with a strong background in full-stack app development. I am a highly collaborative team player passionate about software engineering, eager to learn new technologies and apply my problem solving skills in a real world internship.          </p>
+        </div>
+
+        <div class="content-block">
+          <div class="section-title">Technical Projects</div>
+          <div class="project-item">
+            <div class="item-header">
+              <div class="item-title">USafe (Mobile Safety)</div>
+              <div class="item-date">Aug 2025 – Present</div>
+            </div>
+            <div class="item-tech">Node.js, Supabase, Flutter, JWT</div>
+            <ul class="main-list">
+              <li>
+                Designed an accessible UI/UX applying core HCI principles.
+              </li>
+              <li>
+                Engineered robust state management and strict JWT authentication
+                protocols to ensure zero-crash reliability.
+              </li>
+              <li>
+                Integrated and managed Supabase backend infrastructure to enable
+                seamless real-time data synchronization.
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-item">
+            <div class="item-header">
+              <div class="item-title">Tabby (Debt Settlement)</div>
+              <div class="item-date">Nov 2025 – Present</div>
+            </div>
+            <div class="item-tech">Python, REST APIs, Flutter</div>
+            <ul class="main-list">
+              <li>
+                Architected and deployed a Python REST API backend to execute
+                complex debt settlement algorithms.
+              </li>
+              <li>
+                Optimized payload sizes and server response logic to minimize
+                network data transmission overhead.
+              </li>
+              <li>
+                Documented API endpoints utilizing standard practices to ensure
+                seamless frontend integration and team handoffs.
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-item">
+            <div class="item-header">
+              <div class="item-title">Database Management System</div>
+              <div class="item-date">Oct 2025 – Dec 2025</div>
+            </div>
+            <div class="item-tech">
+              PostgreSQL, SQL, Relational Architecture
+            </div>
+            <ul class="main-list">
+              <li>
+                Designed and provisioned a highly normalized relational database
+                schema (3NF) for scalable data organization.
+              </li>
+              <li>
+                Engineered advanced SQL queries and stored procedures to
+                optimize data retrieval pipelines.
+              </li>
+              <li>
+                Conducted systematic performance tuning to significantly reduce
+                average backend query execution time.
+              </li>
+              <li>
+                Implemented strict Role-Based Access Control (RBAC) policies to
+                enforce infrastructure security.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="resume-container">
+      <div class="sidebar">
+        <div class="content-block">
+          <div class="sidebar-title">Core Competencies</div>
+          <ul class="sidebar-list">
+            <li>Agile Problem Solving</li>
+            <li>Cross-Functional Leadership</li>
+            <li>Technical Communication</li>
+            <li>Continuous Learning</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <div class="sidebar-title">Certifications</div>
+          <ul class="sidebar-list">
+            <li>Machine Learning, IIT PDU (2025)</li>
+            <li>Cybersecurity, NIBM (2025)</li>
+            <li>Computer Science, NIBM (2022)</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <div class="sidebar-title">Languages</div>
+          <ul class="sidebar-list">
+            <li><strong>English:</strong> Professional Proficiency</li>
+            <li><strong>Sinhala:</strong> Native / Bilingual</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <div class="sidebar-title">Extras</div>
+          <ul class="sidebar-list" style="gap: 8px;">
+            <li>
+              <strong>Competitive Programming:</strong> Active in coding
+              competitions like IEEE Xtreme.
+            </li>
+            <li>
+              <strong>Content Creation:</strong> Produce short-form marketing
+              videos using tools like CapCut.
+            </li>
+            <li>
+              <strong>Event Compering:</strong> Experienced in hosting events,
+              demonstrating strong public speaking.
+            </li>
+            <li>
+              <strong>Tech Community:</strong> Participate in local hackathons,
+              AI, and software developer meetups to stay in touch with current trends.
+            </li>
+            <li>
+              <strong>Self-Directed Learning:</strong> Exploring diverse
+              branches of IT, such as AI/ML and Cybersecurity.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="content-block">
+          <div class="section-title">Additional Projects</div>
+          <div class="project-item">
+            <div class="item-header">
+              <div class="item-title">E-Commerce Storefront</div>
+              <div class="item-date">Mar 2026 – Present</div>
+            </div>
+            <div class="item-tech">HTML, CSS, JavaScript</div>
+            <ul class="main-list">
+              <li>
+                Developed a responsive frontend featuring dynamic product
+                galleries and navigation.
+              </li>
+              <li>
+                Implemented a client-side shopping cart feature using local
+                storage mechanisms.
+              </li>
+              <li>
+                Conducted strict codebase debugging to fix DOM manipulation
+                errors and optimize CSS selectors.
+              </li>
+              <li>
+                Applied semantic HTML principles to ensure strict base
+                accessibility standards.
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-item">
+            <div class="item-header">
+              <div class="item-title">Airport Traffic Analysis</div>
+              <div class="item-date">May 2025 – Aug 2025</div>
+            </div>
+            <div class="item-tech">Python, Tkinter</div>
+            <ul class="main-list">
+              <li>
+                Developed automated Python scripts for custom data parsing and
+                extraction of massive aviation datasets (1000+ records).
+              </li>
+              <li>
+                Built a desktop analytics tool to programmatically visualize
+                operational trends.
+              </li>
+              <li>
+                Engineered a modular architecture to facilitate the easy
+                integration of future visualization modules.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="section-title">Leadership & Activities</div>
+          <ul class="main-list">
+            <li>
+              <strong>Project Lead (USafe):</strong> Managed an 8-month agile full-stack development cycle and version control workflows with a team of 6 developers.
+            </li>
+            <li>
+              <strong>IEEE Member:</strong> Top 10/100+ in 24hr coderally
+              finale; competed in IEEE Xtreme & Hult Prize.
+            </li>
+            <li>
+              <strong>Toastmasters Member:</strong> Active participant
+              developing public speaking and professional communication.
+            </li>
+            <li>
+              <strong>Badminton Captain (2022):</strong> Cultivating strategic
+              teamwork, discipline, and competitive resilience.
+            </li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <div class="section-title">References</div>
+          <div class="refs-container">
+            <div class="ref-box">
+              <strong>Shehan Kumar</strong>
+              <span style="color: var(--text-main); font-weight: 600"
+                >Chief Growth Officer, Parenthrive</span
+              ><br />
+              Visiting Lecturer, IIT<br />
+              shehanrk@gmail.com<br />
+              +94 72 724 9324
+            </div>
+            <div class="ref-box">
+              <strong>Baladharshana Sathianathan</strong>
+              <span style="color: var(--text-main); font-weight: 600"
+                >Senior Lecturer, London Graduate School</span
+              ><br />
+              University Lecturer, IIT<br />
+              bala.s@iit.ac.lk<br />
+              +94 77 013 7368
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

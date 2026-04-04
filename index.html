@@ -19,18 +19,50 @@
     <!-- Resource hints for faster navigation -->
     <link rel="prefetch" href="/src/pages/Projects.jsx" />
     <link rel="prefetch" href="/src/pages/Contact.jsx" />
+
+    <script>
+      (function () {
+        function paintError(message) {
+          var panel = document.getElementById('startup-error-panel')
+          if (!panel) {
+            panel = document.createElement('pre')
+            panel.id = 'startup-error-panel'
+            panel.style.position = 'fixed'
+            panel.style.left = '12px'
+            panel.style.right = '12px'
+            panel.style.bottom = '12px'
+            panel.style.maxHeight = '40vh'
+            panel.style.overflow = 'auto'
+            panel.style.margin = '0'
+            panel.style.padding = '12px 14px'
+            panel.style.whiteSpace = 'pre-wrap'
+            panel.style.background = '#130f12'
+            panel.style.border = '1px solid rgba(255,255,255,0.15)'
+            panel.style.borderRadius = '10px'
+            panel.style.color = '#ffb3c1'
+            panel.style.font = '12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace'
+            panel.style.zIndex = '2147483647'
+            document.addEventListener('DOMContentLoaded', function () {
+              document.body.appendChild(panel)
+            })
+          }
+          panel.textContent = String(message)
+        }
+
+        window.addEventListener('error', function (event) {
+          paintError('Startup error: ' + (event.error?.stack || event.message || 'Unknown error'))
+        })
+
+        window.addEventListener('unhandledrejection', function (event) {
+          var reason = event.reason
+          paintError('Unhandled rejection: ' + (reason?.stack || reason?.message || String(reason)))
+        })
+      })()
+    </script>
   </head>
   <body>
+    <div id="boot-status" style="position:fixed;top:12px;left:12px;right:12px;padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.14);background:#f4f4f5;color:#111;font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;z-index:2147483646;">Initializing app...</div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    
-    <!-- Web Vitals for performance monitoring (optional) -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {});
-        });
-      }
-    </script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink, Link, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { PROFILE } from '../../data/info'
 
@@ -9,10 +9,17 @@ const links = [
   { to: '/contact',  label: 'Contact'  },
 ]
 
+const navPillTransition = { type: 'spring', stiffness: 150, damping: 14, mass: 0.72 }
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
+
+  const isLinkActive = (to) => {
+    if (to === '/') return location.pathname === '/'
+    return location.pathname.startsWith(to)
+  }
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
@@ -36,60 +43,64 @@ export default function Navbar() {
       <div className="section-max w-full flex items-center justify-between pointer-events-none">
         
         {/* ── LEFT: Floating Logo Island ── */}
-        <div className={`pointer-events-auto transition-all duration-700 border border-transparent ${scrolled ? 'glass-nav rounded-2xl md:rounded-[20px] p-2 bg-black/70 shadow-[0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl border-white/[0.08]' : 'p-2 bg-transparent'}`}>
-          <Link 
-            to="/" 
+        <div className={`pointer-events-auto transition-all duration-700 border border-transparent ${scrolled ? 'glass-nav rounded-2xl md:rounded-[20px] px-2.5 py-2 bg-black/70 shadow-[0_18px_42px_rgba(0,0,0,0.52)] backdrop-blur-xl border-white/[0.1]' : 'px-2 py-1.5 bg-transparent'}`}>
+          <button
+            type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="no-underline flex items-center gap-3 group relative pr-2"
+            className="flex items-center gap-3 group relative pr-2 bg-transparent border-0 p-0 cursor-pointer"
+            aria-label="Scroll to top"
           >
             <div className="absolute inset-0 bg-[var(--accent)] blur-xl opacity-0 group-hover:opacity-15 transition-opacity duration-700 rounded-full pointer-events-none"></div>
             
-            <div className="relative w-9 h-9 md:w-10 md:h-10 rounded-[12px] md:rounded-[14px] glass-sm flex items-center justify-center text-[var(--accent)] text-[13px] md:text-[14px] font-bold tracking-wider font-display border border-white/[0.08] group-hover:border-[var(--accent)]/40 group-hover:shadow-[0_0_20px_rgba(103,232,249,0.2)] transition-all duration-500 bg-white/[0.02] group-hover:bg-[var(--accent)]/10 z-10">
+            <div className="relative w-9 h-9 md:w-10 md:h-10 rounded-[12px] md:rounded-[14px] glass-sm flex items-center justify-center text-[var(--accent)] text-[13px] md:text-[14px] font-bold tracking-wider font-display border border-white/[0.1] group-hover:border-[var(--accent)]/45 group-hover:shadow-[0_0_24px_rgba(103,232,249,0.216)] transition-all duration-500 bg-white/[0.03] group-hover:bg-[var(--accent)]/12 z-10">
               SP
             </div>
             <span className="font-display text-[15px] md:text-[17px] font-semibold tracking-tight text-white/90 group-hover:text-white transition-colors duration-300 drop-shadow-md relative z-10 max-[380px]:hidden">
               {PROFILE.name.split(' ')[0]}
             </span>
-          </Link>
+          </button>
         </div>
 
         {/* ── RIGHT: Floating Nav Island ── */}
         <div className="flex items-center gap-2 md:gap-3 pointer-events-auto">
           
           {/* Navigation Dock (Desktop) */}
-          <nav className={`hidden md:flex items-center gap-1 transition-all duration-700 border rounded-full ${
+          <nav
+            className={`hidden md:flex items-center gap-1.5 transition-all duration-700 border rounded-full relative overflow-hidden ${
             scrolled 
-              ? 'p-2 border-white/[0.08] bg-black/70 shadow-[0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl' 
-              : 'p-1.5 border-white/[0.04] bg-white/[0.01] glass-sm'
-          }`}>
-            {links.map(({ to, label }) => (
+              ? 'px-2.5 py-2 border-white/[0.1] bg-black/70 shadow-[0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl' 
+              : 'px-2 py-1.5 border-white/[0.08] bg-white/[0.01] glass-sm'
+          }`}
+          >
+            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.18] to-transparent pointer-events-none" />
+
+            {links.map(({ to, label }) => {
+              const isActive = isLinkActive(to)
+              return (
               <NavLink
                 key={to}
                 to={to}
                 end={to === '/'}
-                className={({ isActive }) =>
-                  `text-[12px] md:text-[13px] font-semibold px-4 md:px-5 py-2.5 rounded-full no-underline relative group overflow-hidden ${
+                data-nav-active={isActive ? 'true' : 'false'}
+                className={
+                    `inline-flex items-center justify-center text-[12px] md:text-[13px] font-semibold px-3 md:px-4 py-2 rounded-full no-underline relative group overflow-hidden transition-[color,transform] duration-300 ${
                     isActive
-                      ? 'text-[var(--accent)]'
-                      : 'text-white/40 hover:text-white hover:bg-white/[0.03] transition-colors duration-300'
+                      ? 'text-[var(--accent)] z-10 drop-shadow-[0_0_14px_rgba(103,232,249,0.162)]'
+                      : 'text-white/45 hover:text-white/90 hover:bg-white/[0.04] transition-colors duration-300'
                   }`
                 }
               >
-                {({ isActive }) => (
-                  <>
-                    {/* The sliding Liquid Gel Pill */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="navGel"
-                        transition={{ type: "spring", bounce: 0.25, duration: 0.6 }}
-                        className="absolute inset-0 rounded-full z-0 pointer-events-none liquid-pill-active"
-                      ></motion.div>
-                    )}
-                    <span className="relative z-10 tracking-wide uppercase font-mono">{label}</span>
-                  </>
-                )}
+                  {isActive && (
+                    <motion.span
+                      layoutId="desktop-nav-pill"
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-full liquid-pill-active"
+                      transition={navPillTransition}
+                    />
+                  )}
+                  <span data-nav-label="true" className="relative z-10 tracking-wide uppercase font-mono leading-none">{label}</span>
               </NavLink>
-            ))}
+            )})}
           </nav>
 
           {/* ── RESPONSIVE MOBILE MENU BUTTON ── */}

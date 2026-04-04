@@ -21,6 +21,7 @@ export const logResourceTiming = () => {
   if (window.performance && window.performance.getEntriesByType) {
     const resources = window.performance.getEntriesByType('resource');
     const navigation = window.performance.getEntriesByType('navigation')[0];
+    if (!navigation) return;
     
     console.group('⚡ Performance Metrics');
     console.log(`DNS Lookup: ${navigation.domainLookupEnd - navigation.domainLookupStart}ms`);
@@ -43,27 +44,40 @@ export const logResourceTiming = () => {
 
 // Calculate Largest Contentful Paint (LCP)
 export const observeLCP = () => {
-  if ('PerformanceObserver' in window) {
+  if (!('PerformanceObserver' in window)) return;
+  try {
+    const supported = PerformanceObserver.supportedEntryTypes || [];
+    if (!supported.includes('largest-contentful-paint')) return;
+
     const observer = new PerformanceObserver((list) => {
       const entries = list.getEntries();
       const lastEntry = entries[entries.length - 1];
+      if (!lastEntry) return;
       console.log(`📊 LCP: ${lastEntry.renderTime || lastEntry.loadTime}ms`);
     });
-    
+
     observer.observe({ entryTypes: ['largest-contentful-paint'] });
+  } catch {
+    // Ignore browser-specific observer failures.
   }
 };
 
 // First Input Delay (FID)
 export const observeFID = () => {
-  if ('PerformanceObserver' in window) {
+  if (!('PerformanceObserver' in window)) return;
+  try {
+    const supported = PerformanceObserver.supportedEntryTypes || [];
+    if (!supported.includes('first-input')) return;
+
     const observer = new PerformanceObserver((list) => {
       list.getEntries().forEach((entry) => {
         console.log(`🎯 FID: ${entry.processingDuration}ms`);
       });
     });
-    
+
     observer.observe({ entryTypes: ['first-input'] });
+  } catch {
+    // Ignore browser-specific observer failures.
   }
 };
 

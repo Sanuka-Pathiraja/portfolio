@@ -1,0 +1,84 @@
+SANUKA PATHIRAJA
+Computer Science Undergraduate | Software Engineering Intern Candidate
+
+Location: Western Province, Ja Ela, Sri Lanka
+Email: sanukapathiraja@gmail.com
+Phone: +94 77 178 1721
+LinkedIn: https://linkedin.com/in/sanukapathiraja
+GitHub: https://github.com/Sanuka-Pathiraja
+
+PROFESSIONAL SUMMARY
+Second-year Computer Science student at the University of Westminster with practical full-stack development experience and strong project execution skills. Comfortable shipping features, collaborating in teams, and communicating technical progress.
+
+AVAILABILITY
+Internship Window: May 2026 - Dec 2026
+Preferred Roles: Software Engineering Intern, Full-Stack Intern, Backend Intern
+Timezone: GMT+5:30 (Colombo)
+Work Preference: Remote / Hybrid / On-site
+
+EDUCATION
+BSc Computer Science, University of Westminster
+Expected 2028 (2nd Year)
+
+TECHNICAL SKILLS
+Languages: Python, Java, JavaScript, Dart, SQL, HTML/CSS
+Frameworks & Libraries: React, Node.js, Express, Flutter, TensorFlow Lite
+Data & Storage: PostgreSQL, Supabase
+Tools: Git, GitHub, REST API design
+Core: Data Structures, Algorithms, Client-Server Architecture
+
+PROJECTS
+1) USafe (Project Lead, Full Stack Developer)
+Timeline: Aug 2025 - Present
+Stack: Flutter, Node.js, Express, TensorFlow Lite, PostgreSQL, Twilio/Vonage
+Highlights:
+- Led a student team with milestone-based sprint execution.
+- Built mobile safety workflows with on-device inference integration.
+- Improved emergency action flow and reliability of core API services.
+
+2) Tabby (Fullstack Developer)
+Timeline: Nov 2025 - Present
+Stack: React, Supabase, PostgreSQL
+Highlights:
+- Built collaborative group expense workflows with real-time updates.
+- Implemented secure auth and structured relational data flows.
+
+3) Air Traffic Analysis (Data Analysis / Backend)
+Timeline: May 2025 - Aug 2025
+Stack: Python, Tkinter, Data Visualization
+Highlights:
+- Processed and analyzed large airport traffic datasets.
+- Built an interactive desktop analytics interface.
+
+4) Optiflow (Front End Developer)
+Stack: Python, Frontend collaboration
+Highlights:
+- Contributed to workflow optimization initiative.
+- Supported requirement breakdown and disciplined delivery.
+
+5) Adaptive Traffic Light (Backend / Project Proponent)
+Stack: Python, Algorithms
+Highlights:
+- Developed dynamic signal logic based on traffic density.
+- Improved responsiveness in simulation scenarios.
+
+6) Dragon Repeller (Front End Developer)
+Stack: HTML, CSS, JavaScript
+Highlights:
+- Built state-driven web game interface using vanilla web tech.
+
+LEADERSHIP & COMMUNITY
+- IEEE student branch member; active in hackathons and workshops.
+- Toastmasters participant; improving public speaking and communication.
+- Leadership and team coordination experience in project delivery.
+
+REFERENCES
+Shehan Kumar
+Chief Growth Officer, Parenthrive / Visiting Lecturer, IIT
+Email: shehanrk@gmail.com
+Phone: +94 72 724 9324
+
+Baladharshana Sathianathan
+Senior Lecturer, London Graduate School / University Lecturer, IIT
+Email: bala.s@iit.ac.lk
+Phone: +94 77 013 7368

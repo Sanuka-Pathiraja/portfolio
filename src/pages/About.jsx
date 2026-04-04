@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Sparkles, Hash, Users, Heart, GraduationCap } from 'lucide-react'
 import { ABOUT_CONTENT } from '../data/info'
+import SEO from '../components/seo/SEO'
 
 import universityImg from '../assets/university.png'
 import schoolImg from '../assets/school (2).png'
@@ -18,6 +19,12 @@ const sectionIcons = [Sparkles, Hash, Users, Heart]
 export default function About() {
   return (
     <motion.div initial="hidden" animate="show" exit={{ opacity: 0 }}>
+      <SEO
+        title="About"
+        description="Personal journey, strengths, community work, and educational background of Sanuka Pathiraja."
+        path="/about"
+      />
+
       <section className="section-max pt-20 pb-40">
 
         <motion.div variants={fade} custom={0} className="text-center mb-20">

@@ -1,12 +1,15 @@
 import { FileText, Download, ExternalLink } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { skills, timeline as experience } from '../data/projects'
+import { AVAILABILITY } from '../data/info'
+import SEO from '../components/seo/SEO'
+import { trackEvent } from '../utils/analytics'
 import './Resume.css'
 
 const educationItems = [
   {
     degree: 'Bachelor of Science in Computer Science',
-    institution: 'University',
+    institution: 'University of Westminster',
     period: '2023 – Present',
     details: 'Studying algorithms, data structures, software engineering, and system design.',
   },
@@ -24,6 +27,12 @@ const resumeSkills = [
 export default function Resume() {
   return (
     <div className="resume-page">
+      <SEO
+        title="Resume"
+        description="Technical resume, skills, and internship availability for Sanuka Pathiraja."
+        path="/resume"
+      />
+
       {/* Hero */}
       <section className="resume-hero section">
         <div className="orb orb-purple" style={{ width: 300, height: 300, bottom: -80, right: -80 }} />
@@ -35,15 +44,32 @@ export default function Resume() {
           <p className="section-subtitle animate-fade-in-up delay-200">
             A snapshot of my technical background, education, and key achievements.
           </p>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--accent)]/10 px-4 py-2 animate-fade-in-up delay-200">
+            <span className="h-2 w-2 rounded-full bg-[var(--accent)] animate-pulse" aria-hidden="true" />
+            <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-[var(--accent)]">
+              {AVAILABILITY.badge} · {AVAILABILITY.internshipWindow}
+            </span>
+          </div>
           <div className="resume-hero__actions animate-fade-in-up delay-300">
             <a
-              href="/resume.pdf"
-              download
+              href="/resume-one-page.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-primary"
               id="download-resume-btn"
+              onClick={() => trackEvent('resume_open_click', { format: 'print_html' })}
             >
               <Download size={16} />
-              Download PDF
+              Open One-Page CV
+            </a>
+            <a
+              href="/resume-ats.txt"
+              download
+              className="btn btn-secondary"
+              onClick={() => trackEvent('resume_download_click', { format: 'ats_text' })}
+            >
+              <FileText size={16} />
+              Download ATS Text
             </a>
             <Link to="/contact" className="btn btn-secondary">
               Get In Touch
