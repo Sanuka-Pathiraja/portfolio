@@ -13,15 +13,15 @@ export const projects = [
   },
   {
     id: 'M-02',
-    title: 'Tabby',
-    subtitle: 'Full-Stack Group Expense Management',
+    title: 'Think Board',
+    subtitle: 'Personal Productivity Note App',
     description:
-      'End-to-end expense splitting platform with JWT authentication, group management, real-time balance sync, and automatic debt resolution across members.',
-    techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
+      'Think Board is a personal productivity and note-taking MERN app for capturing ideas quickly, organizing notes into simple collections, and keeping tasks, drafts, and reminders in one place. It is designed to stay lightweight and easy to use, so ideas can be saved before they get lost. The goal is to give users a simple workspace for planning, writing, and revisiting important notes later.',
+    techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'REST APIs'],
     type: 'Full-Stack',
     accent: '#FF2800',
     status: 'LIVE',
-    github: 'https://github.com/sanuka98',
+    github: 'https://github.com/Sanuka-Pathiraja/Think-Board.git',
   },
   {
     id: 'M-03',
@@ -61,7 +61,7 @@ export const timeline = [
   {
     year: '2026',
     title: 'Building Full-Stack Products',
-    desc: 'Shipping Tabby, USafe, and OptiFlow — complex systems covering mobile, web, and backend.',
+    desc: 'Shipping Think Board, USafe, and OptiFlow — focused products across mobile, web, and backend.',
   },
   {
     year: '2025',
