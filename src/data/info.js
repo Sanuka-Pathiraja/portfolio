@@ -1,7 +1,7 @@
 export const PROFILE = {
   name: "Sanuka Pathiraja",
-  role: "Developer & Computer Science Undergraduate",
-  summary: "Second-year Computer Science student at the University of Westminster with a strong background in full-stack app development. I am eager to apply my problem-solving skills in a real-world internship.",
+  role: "Software Engineer & Project-Focused CS Undergraduate",
+  summary: "Second-year Computer Science student at the University of Westminster with hands-on full-stack development experience and project coordination exposure. I enjoy shipping reliable features, aligning team execution, and communicating technical progress clearly in real-world internships.",
   email: "sanukapathiraja@gmail.com",
   phone: "+94 77 178 1721",
   location: "Western Province, Ja Ela, Sri Lanka",
@@ -10,7 +10,7 @@ export const PROFILE = {
 };
 
 export const SKILLS = [
-  "React", "Python", "PostgreSQL", "Node.js", "Flutter", "SQL", "Git", "REST APIs", "DevOps", "Java", "Tailwind CSS"
+  "React", "Python", "PostgreSQL", "Node.js", "Flutter", "SQL", "Git", "REST APIs", "Agile Collaboration", "Roadmapping", "Java", "Tailwind CSS"
 ];
 
 export const PROJECTS = [
@@ -18,7 +18,7 @@ export const PROJECTS = [
     id: "usafe",
     title: "USafe",
     role: "Project Lead, Full Stack Developer / Project Proponent",
-    desc: "An Edge AI-powered mobile application. Directed a team of developers to build a zero-trust personal safety ecosystem relying on on-device machine learning (YAMNet) to continuously monitor for acoustic distress anomalies. Engineered the 'SafePath Guardian' frontend interface balancing TensorFlow Lite local inference with Twilio/Vonage webhooks.",
+    desc: "An Edge AI-powered mobile safety application. Directed a student dev team with clear sprint goals, task delegation, and delivery checkpoints while building a zero-trust ecosystem using on-device ML (YAMNet). Engineered the 'SafePath Guardian' frontend and coordinated TensorFlow Lite inference with Twilio/Vonage webhook workflows.",
     stack: ["Flutter", "Node.js", "Express", "TensorFlow Lite", "PostgreSQL", "Twilio/Vonage"],
     type: "AI Safety Ecosystem",
     live: "https://usafe.lk/"
@@ -27,7 +27,7 @@ export const PROJECTS = [
     id: "tabby",
     title: "Tabby",
     role: "Fullstack Developer",
-    desc: "A Splitwise-style full-stack group expense management application. Engineered to handle complex relational data, secure user authentication, and synchronized, real-time expense tracking.",
+    desc: "A Splitwise-style full-stack group expense platform. Built secure auth, relational data workflows, and real-time expense updates while structuring features around milestones and usability priorities.",
     stack: ["Supabase", "PostgreSQL", "Full-Stack", "React"],
     type: "Group Expense",
     github: "https://github.com/Sanuka-Pathiraja/tabby"
@@ -45,7 +45,7 @@ export const PROJECTS = [
     id: "optiflow",
     title: "Optiflow",
     role: "Front End Developer",
-    desc: "A collaborative software engineering initiative focused on workflow optimization. Demonstrates ability to manage complex logic, streamline system processes, and execute strict version control.",
+    desc: "A collaborative software initiative focused on workflow optimization. Contributed frontend features while supporting planning discussions, requirement breakdowns, and disciplined version control practices.",
     stack: ["Collaboration", "Optimization", "Python"],
     type: "Optimization Tool",
     github: "https://github.com/Kithsara360/OptiFlow"
@@ -73,12 +73,12 @@ export const PROJECTS = [
 export const ABOUT_CONTENT = {
   journey: {
     title: "Personal Journey",
-    content: "As a Computer Science undergraduate, my narrative is driven by a deep-seated passion for the mechanics of software. I focus on bridging the gap between elegant front-end design and robust back-end logic, always with an eye toward system efficiency."
+    content: "As a Computer Science undergraduate, I am motivated by both strong software craftsmanship and structured project execution. I enjoy bridging elegant front-end design with robust back-end logic while keeping delivery timelines, team coordination, and user outcomes in focus."
   },
   softSkills: [
     { name: "Toastmasters", desc: "Developing public speaking and professional communication." },
-    { name: "Communication", desc: "Articulating complex technical concepts to diverse audiences." },
-    { name: "Leadership", desc: "Leading cross-functional teams in agile environments." }
+    { name: "Communication", desc: "Translating technical decisions into clear updates for teammates and non-technical stakeholders." },
+    { name: "Leadership", desc: "Guiding small cross-functional teams through focused, milestone-driven collaboration." }
   ],
   community: [
     { name: "IEEE", desc: "Active member of the IEEE student branch. Regularly participate in hackathons and workshops organized by the society." },

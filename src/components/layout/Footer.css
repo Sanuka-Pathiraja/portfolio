@@ -126,3 +126,39 @@
     gap: 32px;
   }
 }
+
+@media (min-width: 1440px) {
+  .footer__inner {
+    gap: 64px;
+    padding-top: 64px;
+    padding-bottom: 48px;
+  }
+  
+  .footer__tagline {
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .footer__inner {
+    gap: 80px;
+    padding-top: 80px;
+    padding-bottom: 56px;
+  }
+  
+  .footer__logo-text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .footer__inner {
+    gap: 120px;
+    padding-top: 100px;
+    padding-bottom: 64px;
+  }
+  
+  .footer__logo-text {
+    font-size: 1.5rem;
+  }
+}

@@ -216,3 +216,65 @@
   .resume-edu-header { flex-direction: column; gap: 2px; }
   .resume-exp-header { flex-direction: column; gap: 2px; }
 }
+
+@media (min-width: 1440px) {
+  .resume-body__grid {
+    gap: 32px;
+  }
+  
+  .resume-left,
+  .resume-right {
+    gap: 24px;
+  }
+  
+  .resume-section {
+    padding: 36px;
+    gap: 20px;
+  }
+  
+  .resume-section-title {
+    font-size: 0.85rem;
+  }
+  
+  .resume-section-text {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .resume-body__grid {
+    gap: 40px;
+  }
+  
+  .resume-section {
+    padding: 44px;
+    gap: 24px;
+  }
+  
+  .resume-section-title {
+    font-size: 0.9rem;
+  }
+  
+  .resume-section-text {
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .resume-body__grid {
+    gap: 48px;
+  }
+  
+  .resume-section {
+    padding: 56px;
+    gap: 28px;
+  }
+  
+  .resume-section-title {
+    font-size: 0.95rem;
+  }
+  
+  .resume-section-text {
+    font-size: 1.1rem;
+  }
+}

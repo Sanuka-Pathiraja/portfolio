@@ -18,7 +18,9 @@ export default function Projects() {
     "Data Structures", 
     "System Optimization", 
     "Relational Databases", 
-    "Full-Stack Integration"
+    "Full-Stack Integration",
+    "Sprint Planning",
+    "Delivery Tracking"
   ]
   // Duplicate for infinite seamless scroll
   const marqueeDisciplines = [...disciplines, ...disciplines, ...disciplines, ...disciplines]
@@ -106,7 +108,7 @@ export default function Projects() {
             Selected <span className="text-gradient">Creations</span>
           </h1>
           <p className="text-[17px] text-white/30 max-w-xl mx-auto font-light leading-relaxed">
-            Full-stack deployments, optimization tools, and academic research.
+            Full-stack builds supported by practical planning, collaboration, and consistent execution.
           </p>
         </motion.div>
 

@@ -213,18 +213,18 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 relative z-10">
                 <div className="rounded-2xl border border-white/[0.05] bg-white/[0.01] p-5 md:p-6">
                   <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/20">Focus</p>
-                  <p className="font-display text-[18px] md:text-[20px] text-white/80 mt-2">Full-Stack Systems</p>
-                  <p className="text-[13px] text-white/35 mt-2 leading-relaxed">Building interfaces and backend logic as one cohesive product.</p>
+                  <p className="font-display text-[18px] md:text-[20px] text-white/80 mt-2">Engineering + Delivery</p>
+                  <p className="text-[13px] text-white/35 mt-2 leading-relaxed">Building strong product features with clear execution milestones.</p>
                 </div>
                 <div className="rounded-2xl border border-white/[0.05] bg-white/[0.01] p-5 md:p-6">
-                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/20">Community</p>
-                  <p className="font-display text-[18px] md:text-[20px] text-white/80 mt-2">IEEE + Toastmasters</p>
-                  <p className="text-[13px] text-white/35 mt-2 leading-relaxed">Engineering growth powered by collaboration and communication.</p>
+                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/20">Collaboration</p>
+                  <p className="font-display text-[18px] md:text-[20px] text-white/80 mt-2">Team Communication</p>
+                  <p className="text-[13px] text-white/35 mt-2 leading-relaxed">Keeping stakeholders aligned through concise updates and shared priorities.</p>
                 </div>
                 <div className="rounded-2xl border border-white/[0.05] bg-white/[0.01] p-5 md:p-6">
                   <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/20">Trajectory</p>
                   <p className="font-display text-[18px] md:text-[20px] text-white/80 mt-2">Internship Ready</p>
-                  <p className="text-[13px] text-white/35 mt-2 leading-relaxed">Actively preparing for impactful software engineering internships.</p>
+                  <p className="text-[13px] text-white/35 mt-2 leading-relaxed">Prepared to contribute as an engineer while supporting lightweight project coordination.</p>
                 </div>
               </div>
             </motion.div>

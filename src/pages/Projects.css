@@ -45,3 +45,29 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (min-width: 1440px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .projects-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .projects-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+  }
+  
+  .projects-more__card {
+    padding: 80px 64px;
+    max-width: 100%;
+  }
+}

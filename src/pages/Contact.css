@@ -217,3 +217,43 @@
   .contact-form__row { grid-template-columns: 1fr; }
   .contact-form-card { padding: 24px; }
 }
+
+@media (min-width: 1440px) {
+  .contact-main__grid {
+    gap: 48px;
+  }
+  
+  .contact-form-card {
+    padding: 48px;
+  }
+  
+  .contact-sidebar {
+    width: 420px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .contact-main__grid {
+    grid-template-columns: 1fr 480px;
+    gap: 64px;
+  }
+  
+  .contact-form-card {
+    padding: 56px;
+  }
+  
+  .contact-sidebar {
+    width: auto;
+  }
+}
+
+@media (min-width: 2560px) {
+  .contact-main__grid {
+    grid-template-columns: 1fr 560px;
+    gap: 96px;
+  }
+  
+  .contact-form-card {
+    padding: 72px;
+  }
+}
