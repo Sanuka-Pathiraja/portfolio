@@ -68,7 +68,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-16">
           
           {/* ── LEFT: Cinematic Typography & Narrative ── */}
-          <div className="w-full relative lg:col-span-7 order-2 lg:order-1">
+          <div className="w-full relative lg:col-span-7 order-2 lg:order-2">
 
             <motion.h1 variants={fade} custom={1} className="font-display text-[clamp(2.25rem,11vw,5.5rem)] font-bold text-white leading-[1.02] tracking-[-0.04em] mb-3 sm:mb-4 drop-shadow-2xl text-center lg:text-left">
               Sanuka <br />
@@ -110,7 +110,7 @@ export default function Home() {
           </div>
 
           {/* ── RIGHT: Architectural Image Capsule ── */}
-          <motion.div variants={fade} custom={2} className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-none lg:col-span-5 lg:w-full mx-auto lg:mx-0 order-1 lg:order-2 relative">
+          <motion.div variants={fade} custom={2} className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-none lg:col-span-5 lg:w-full mx-auto lg:mx-0 order-1 lg:order-1 relative">
             
             {/* Outline Rings for Depth */}
             <div className="absolute inset-[-10%] rounded-full border border-white/[0.02] animate-pulse"></div>
