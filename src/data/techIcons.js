@@ -1,6 +1,6 @@
 // Tech stack with icon images
 import flutterIcon from '../assets/9d8409f31712045b9741288acef0059e-removebg-preview.png'
-import mongoIcon from '../assets/images-removebg-preview.png'
+import mongoIcon from '../assets/new_mongodb.png'
 import expressIcon from '../assets/mean-solution-stack-express-js-node-js-javascript-github-removebg-preview (1).png'
 import pythonIcon from '../assets/python-logo-clojure-javascript-9-thumbnail-removebg-preview.png'
 import reactIcon from '../assets/react-logo-javascript-front-and-back-ends-user-interface-others-removebg-preview.png'
@@ -10,7 +10,7 @@ import jsIcon from '../assets/javascript-portable-network-graphics-logo-clip-art
 import nodeIcon from '../assets/node-js-javascript-web-application-express-js-computer-software-others-removebg-preview.png'
 import pgIcon from '../assets/postgresql-database-logo-application-software-computer-software-mysql-logo__1_-removebg-preview.png'
 import javaIcon from '../assets/image-removebg-preview.png'
-import dartIcon from '../assets/dart-google-developers-flutter-android-darts-removebg-preview.png'
+import dartIcon from '../assets/new_dart_logo.png'
 
 export const TECH_ICONS = [
   // Web Standard Core

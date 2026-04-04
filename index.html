@@ -2,6 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100vh;
+        margin: 0;
+        background: #000;
+      }
+
+      body {
+        color: #fff;
+      }
+    </style>
     <!-- Preconnect to external resources for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,7 +74,7 @@
     </script>
   </head>
   <body>
-    <div id="boot-status" style="position:fixed;top:12px;left:12px;right:12px;padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.14);background:#f4f4f5;color:#111;font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;z-index:2147483646;">Initializing app...</div>
+    <div id="boot-status" style="position:fixed;top:12px;left:12px;right:12px;padding:10px 12px;border-radius:10px;border:1px solid rgba(103,232,249,0.22);background:rgba(7,15,20,0.96);color:#d7f8ff;font:12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;z-index:2147483646;">Initializing app...</div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
