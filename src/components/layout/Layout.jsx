@@ -2,7 +2,6 @@ import { Outlet } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-import CursorGlow from '../three/CursorGlow'
 
 export default function Layout() {
   const [shootingStar, setShootingStar] = useState(null)
@@ -115,7 +114,6 @@ export default function Layout() {
       <div className="stars-layer stars-1"></div>
       <div className="stars-layer stars-2"></div>
       <div className="stars-layer stars-3"></div>
-      <CursorGlow />
       {shootingStar && (
         <div
           key={shootingStar.id}

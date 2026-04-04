@@ -110,7 +110,7 @@ export default function ProjectCaseStudy() {
       </motion.div>
 
       <motion.div variants={sectionFade} custom={6} className="flex flex-wrap gap-3">
-        <Link className="px-6 py-3 rounded-full glass-sm no-underline text-white/80" to="/projects" onClick={() => trackEvent('case_study_back_to_projects', { projectId: project.id })}>
+        <Link className="w-full sm:w-auto text-center px-6 py-3 rounded-full glass-sm no-underline text-white/80" to="/projects" onClick={() => trackEvent('case_study_back_to_projects', { projectId: project.id })}>
           Back to Projects
         </Link>
         {project.github ? (
@@ -118,7 +118,7 @@ export default function ProjectCaseStudy() {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full glass-sm no-underline text-white/80"
+            className="w-full sm:w-auto text-center px-6 py-3 rounded-full glass-sm no-underline text-white/80"
             onClick={() => trackEvent('case_study_github_click', { projectId: project.id })}
           >
             View Repository

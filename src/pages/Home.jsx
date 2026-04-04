@@ -88,7 +88,7 @@ export default function Home() {
 
             {/* Interaction Row */}
             <motion.div variants={fade} custom={4} className="flex flex-wrap items-center gap-4 sm:gap-5">
-              <Link to="/projects" className="px-8 py-4 rounded-full bg-white text-black text-[15px] font-bold no-underline hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-500 flex items-center gap-2 group/btn z-20 relative">
+              <Link to="/projects" className="w-full sm:w-auto justify-center px-8 py-4 rounded-full bg-white text-black text-[15px] font-bold no-underline hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-500 flex items-center gap-2 group/btn z-20 relative">
                 Explore Projects <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
               </Link>
               
@@ -158,10 +158,10 @@ export default function Home() {
               key={i} 
               variants={firstViewCardItem}
               title={org.name}
-              className="glass p-6 md:p-8 flex items-center justify-center group hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/[0.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 rounded-2xl md:rounded-[28px] relative overflow-hidden h-28 md:h-36"
+              className="glass p-4 sm:p-6 md:p-8 flex items-center justify-center group hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/[0.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 rounded-2xl md:rounded-[28px] relative overflow-hidden h-[clamp(5.5rem,20vw,9rem)]"
             >
               <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/[0.15] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <img 
+              <SafeImage 
                 src={org.img} 
                 alt={org.name} 
                 className={`${org.name === "Toastmasters International" ? "max-w-[90%] max-h-[90%]" : "max-w-[70%] max-h-[70%]"} object-contain group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)]`} 
@@ -293,7 +293,7 @@ export default function Home() {
             <motion.div variants={fade} custom={12} className="glass-content flex flex-col relative overflow-hidden group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
               
-              <div className="relative h-56 md:h-72 w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
+              <div className="relative h-[clamp(12rem,36vw,18rem)] w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
                 <SafeImage src={universityImg} alt="University" className="w-full h-full object-cover object-center opacity-[0.55] group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 md:left-8 z-10">
@@ -313,7 +313,7 @@ export default function Home() {
             <motion.div variants={fade} custom={13} className="glass-content flex flex-col relative overflow-hidden group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
               
-              <div className="relative h-56 md:h-72 w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
+              <div className="relative h-[clamp(12rem,36vw,18rem)] w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
                 <SafeImage src={schoolImg} alt="School" className="w-full h-full object-cover object-center opacity-[0.55] group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 md:left-8 z-10">

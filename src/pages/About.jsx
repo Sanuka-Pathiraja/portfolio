@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Sparkles, Hash, Users, Heart, GraduationCap } from 'lucide-react'
 import { ABOUT_CONTENT } from '../data/info'
 import SEO from '../components/seo/SEO'
+import SafeImage from '../components/ui/SafeImage'
 
 import universityImg from '../assets/university.png'
 import schoolImg from '../assets/school (2).png'
@@ -37,12 +38,12 @@ export default function About() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6">
 
 
 
           {/* ── Personal Journey ── */}
-          <motion.div variants={fade} custom={1} className="glass-content p-8 md:p-10 relative overflow-hidden group lg:row-span-1">
+          <motion.div variants={fade} custom={1} className="glass-content p-4 sm:p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -57,7 +58,7 @@ export default function About() {
           </motion.div>
 
           {/* ── Soft Skills ── */}
-          <motion.div variants={fade} custom={2} className="glass-content p-8 md:p-10 relative overflow-hidden group">
+          <motion.div variants={fade} custom={2} className="glass-content p-4 sm:p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -79,7 +80,7 @@ export default function About() {
           </motion.div>
 
           {/* ── Community ── */}
-          <motion.div variants={fade} custom={3} className="glass-content p-8 md:p-10 relative overflow-hidden group">
+          <motion.div variants={fade} custom={3} className="glass-content p-4 sm:p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -101,7 +102,7 @@ export default function About() {
           </motion.div>
 
           {/* ── Interests ── */}
-          <motion.div variants={fade} custom={4} className="glass-content p-8 md:p-10 relative overflow-hidden group">
+          <motion.div variants={fade} custom={4} className="glass-content p-4 sm:p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -136,8 +137,8 @@ export default function About() {
             <motion.div variants={fade} custom={5} className="glass-content flex flex-col relative overflow-hidden group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
               
-              <div className="relative h-56 md:h-72 w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
-                <img src={universityImg} alt="University" className="w-full h-full object-cover object-center opacity-[0.55] group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
+              <div className="relative h-[clamp(12rem,36vw,18rem)] w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
+                <SafeImage src={universityImg} alt="University" className="w-full h-full object-cover object-center opacity-[0.55] group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 md:left-8 z-10">
                   <span className="font-mono text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--accent)] mb-2 block drop-shadow-md">Undergraduate</span>
@@ -156,8 +157,8 @@ export default function About() {
             <motion.div variants={fade} custom={6} className="glass-content flex flex-col relative overflow-hidden group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
               
-              <div className="relative h-56 md:h-72 w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
-                <img src={schoolImg} alt="School" className="w-full h-full object-cover object-center opacity-[0.55] group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
+              <div className="relative h-[clamp(12rem,36vw,18rem)] w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
+                <SafeImage src={schoolImg} alt="School" className="w-full h-full object-cover object-center opacity-[0.55] group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 md:left-8 z-10">
                   <span className="font-mono text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--accent)] mb-2 block drop-shadow-md">Primary & Secondary</span>

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { PROFILE } from '../../data/info'
 
@@ -15,6 +15,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
+  const mobileMenuRef = useRef(null)
+  const mobileToggleRef = useRef(null)
 
   const isLinkActive = (to) => {
     if (to === '/') return location.pathname === '/'
@@ -38,6 +41,47 @@ export default function Navbar() {
     }
   }, [open])
 
+  useEffect(() => {
+    if (!open) return undefined
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+      }
+    }
+
+    const handlePointerDown = (event) => {
+      const menuEl = mobileMenuRef.current
+      const toggleEl = mobileToggleRef.current
+
+      if (!menuEl || !toggleEl) return
+
+      const clickedInsideMenu = menuEl.contains(event.target)
+      const clickedToggle = toggleEl.contains(event.target)
+
+      if (!clickedInsideMenu && !clickedToggle) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('pointerdown', handlePointerDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('pointerdown', handlePointerDown)
+    }
+  }, [open])
+
+  const handleBrandClick = () => {
+    if (location.pathname !== '/') {
+      navigate('/')
+      return
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
       <div className="section-max w-full flex items-center justify-between pointer-events-none">
@@ -46,7 +90,7 @@ export default function Navbar() {
         <div className={`pointer-events-auto transition-all duration-700 border border-transparent ${scrolled ? 'glass-nav rounded-2xl md:rounded-[20px] px-2.5 py-2 bg-black/70 shadow-[0_18px_42px_rgba(0,0,0,0.52)] backdrop-blur-xl border-white/[0.1]' : 'px-2 py-1.5 bg-transparent'}`}>
           <button
             type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={handleBrandClick}
             className="flex items-center gap-3 group relative pr-2 bg-transparent border-0 p-0 cursor-pointer"
             aria-label="Scroll to top"
           >
@@ -105,11 +149,16 @@ export default function Navbar() {
 
           {/* ── RESPONSIVE MOBILE MENU BUTTON ── */}
           <button
+            type="button"
+            ref={mobileToggleRef}
             className={`md:hidden relative w-11 h-11 rounded-2xl flex items-center justify-center text-white/70 hover:text-white border transition-all shrink-0 ${
               scrolled ? 'glass-nav bg-black/60 shadow-lg border-white/[0.08]' : 'glass-sm border-white/[0.05] bg-white/[0.02]'
             }`}
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-haspopup="menu"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               {open ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 8h16M4 16h16" />}
@@ -121,7 +170,7 @@ export default function Navbar() {
 
       {/* ── MOBILE DROPDOWN ── */}
       {open && (
-        <div className="md:hidden absolute top-[calc(100%+12px)] left-4 right-4 glass rounded-[24px] border border-white/[0.08] shadow-[0_40px_80px_rgba(0,0,0,0.8)] backdrop-blur-3xl px-4 py-5 flex flex-col gap-2 z-50 bg-[#000000]/80">
+        <div ref={mobileMenuRef} id="mobile-menu" className="md:hidden absolute top-[calc(100%+12px)] left-4 right-4 glass rounded-[24px] border border-white/[0.08] shadow-[0_40px_80px_rgba(0,0,0,0.8)] backdrop-blur-3xl px-4 py-5 flex flex-col gap-2 z-50 bg-[#000000]/80 pointer-events-auto">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}

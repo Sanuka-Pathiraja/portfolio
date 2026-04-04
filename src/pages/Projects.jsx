@@ -5,6 +5,7 @@ import { PROJECTS } from '../data/info'
 import { TECH_ICONS } from '../data/techIcons'
 import SEO from '../components/seo/SEO'
 import { trackEvent } from '../utils/analytics'
+import SafeImage from '../components/ui/SafeImage'
 
 const fade = {
   hidden: { opacity: 0, y: 20 },
@@ -100,8 +101,8 @@ export default function Projects() {
                   {/* Top glass reflection line for physical cube authentic feel */}
                   <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/[0.15] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                   
-                  <div className="w-12 h-12 relative z-10 flex items-center justify-center pointer-events-none group-hover:-translate-y-1.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
-                    <img 
+                  <div className="w-[clamp(2.25rem,7vw,3.25rem)] h-[clamp(2.25rem,7vw,3.25rem)] relative z-10 flex items-center justify-center pointer-events-none group-hover:-translate-y-1.5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+                    <SafeImage 
                       src={tech.icon} 
                       alt={tech.name} 
                       className="max-w-full max-h-full object-contain brightness-[0.7] group-hover:brightness-110 group-hover:scale-125 transition-all duration-500" 
@@ -247,7 +248,7 @@ export default function Projects() {
               <div className="relative z-10 mb-2">
                 <Link
                   to={`/projects/${proj.id}`}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-sm no-underline text-white/75 hover:text-white transition-colors"
+                  className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-4 py-2 rounded-full glass-sm no-underline text-white/75 hover:text-white transition-colors"
                   aria-label={`Read case study for ${proj.title}`}
                   onClick={() => trackEvent('project_case_study_click', { projectId: proj.id })}
                 >
