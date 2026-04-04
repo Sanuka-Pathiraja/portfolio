@@ -1,0 +1,218 @@
+.resume-hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 48px;
+}
+
+.resume-hero__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.resume-body__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.resume-left,
+.resume-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Sections */
+.resume-section {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resume-section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-section-text {
+  font-size: 0.92rem;
+  color: var(--muted-2);
+  line-height: 1.8;
+}
+
+/* Education */
+.resume-edu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resume-edu-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.resume-edu-header h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.resume-edu-year {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.resume-edu-inst {
+  font-size: 0.85rem;
+  color: #67e8f9; /* cyan-300 */
+  font-weight: 600;
+}
+
+.resume-edu-detail {
+  font-size: 0.87rem;
+  color: var(--muted-2);
+  margin-top: 4px;
+  line-height: 1.7;
+}
+
+/* Experience Items */
+.resume-exp-item {
+  display: flex;
+  gap: 14px;
+  position: relative;
+}
+
+.resume-exp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.resume-exp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.resume-exp-header h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.resume-exp-year {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.resume-exp-org {
+  font-size: 0.85rem;
+  color: #67e8f9;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.resume-exp-desc {
+  font-size: 0.87rem;
+  color: var(--muted-2);
+  margin-top: 4px;
+  line-height: 1.7;
+}
+
+/* Skill Bars */
+.resume-skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resume-skill-bar__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: var(--muted-2);
+  margin-bottom: 8px;
+}
+
+.resume-skill-bar__track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.resume-skill-bar__fill {
+  height: 100%;
+  width: var(--skill-level, 0%);
+  background: linear-gradient(90deg, var(--accent), #67e8f9); /* Using cyan-300 */
+  border-radius: 99px;
+  animation: fillBar 1.2s ease forwards;
+  animation-delay: 0.3s;
+  transform-origin: left;
+}
+
+@keyframes fillBar {
+  from { width: 0; }
+  to { width: var(--skill-level, 0%); }
+}
+
+/* Tech Groups */
+.resume-tech-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resume-tech-group__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.resume-tech-group__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Soft Skills */
+.resume-soft-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .resume-body__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .resume-hero__actions { flex-direction: column; }
+  .resume-edu-header { flex-direction: column; gap: 2px; }
+  .resume-exp-header { flex-direction: column; gap: 2px; }
+}

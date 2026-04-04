@@ -1,0 +1,47 @@
+.projects-hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 32px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding-bottom: 48px;
+}
+
+.projects-grid-section {
+  padding: 0 0 32px;
+}
+
+.projects-more .container {
+  display: flex;
+  justify-content: center;
+}
+
+.projects-more__card {
+  text-align: center;
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 560px;
+  width: 100%;
+}
+
+.projects-more__card h2 {
+  font-size: 1.4rem;
+}
+
+.projects-more__card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+@media (max-width: 800px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
