@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
 
           {/* Center: System Status */}
-          <div className="flex items-center gap-3 glass-sm px-4 md:px-5 py-2 border-white/[0.04] max-w-full">
+          <div className="glass-content flex items-center gap-3 px-4 md:px-5 py-2 max-w-full">
             <span className="relative flex h-[6px] w-[6px]">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-50"></span>
               <span className="relative inline-flex rounded-full h-[6px] w-[6px] bg-[var(--accent)]"></span>

@@ -35,7 +35,7 @@ export default function About() {
 
 
           {/* ── Personal Journey ── */}
-          <motion.div variants={fade} custom={1} className="glass p-8 md:p-10 relative overflow-hidden border-white/[0.04] group lg:row-span-1">
+          <motion.div variants={fade} custom={1} className="glass-content p-8 md:p-10 relative overflow-hidden group lg:row-span-1">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -50,7 +50,7 @@ export default function About() {
           </motion.div>
 
           {/* ── Soft Skills ── */}
-          <motion.div variants={fade} custom={2} className="glass p-8 md:p-10 relative overflow-hidden border-white/[0.04] group">
+          <motion.div variants={fade} custom={2} className="glass-content p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -72,7 +72,7 @@ export default function About() {
           </motion.div>
 
           {/* ── Community ── */}
-          <motion.div variants={fade} custom={3} className="glass p-8 md:p-10 relative overflow-hidden border-white/[0.04] group">
+          <motion.div variants={fade} custom={3} className="glass-content p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -94,7 +94,7 @@ export default function About() {
           </motion.div>
 
           {/* ── Interests ── */}
-          <motion.div variants={fade} custom={4} className="glass p-8 md:p-10 relative overflow-hidden border-white/[0.04] group">
+          <motion.div variants={fade} custom={4} className="glass-content p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -126,7 +126,7 @@ export default function About() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
             {/* University */}
-            <motion.div variants={fade} custom={5} className="glass flex flex-col relative overflow-hidden border-white/[0.04] group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
+            <motion.div variants={fade} custom={5} className="glass-content flex flex-col relative overflow-hidden group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
               
               <div className="relative h-56 md:h-72 w-full overflow-hidden shrink-0 border-b border-white/[0.04]">
@@ -146,7 +146,7 @@ export default function About() {
             </motion.div>
 
             {/* School */}
-            <motion.div variants={fade} custom={6} className="glass flex flex-col relative overflow-hidden border-white/[0.04] group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
+            <motion.div variants={fade} custom={6} className="glass-content flex flex-col relative overflow-hidden group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
               
               <div className="relative h-56 md:h-72 w-full overflow-hidden shrink-0 border-b border-white/[0.04]">

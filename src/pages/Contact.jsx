@@ -28,7 +28,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-stretch">
 
           {/* ── Contact Form ── */}
-          <motion.div variants={fade} custom={1} className="lg:col-span-3 glass p-6 sm:p-8 md:p-10 relative overflow-hidden border-white/[0.04] group flex flex-col h-full">
+          <motion.div variants={fade} custom={1} className="lg:col-span-3 glass-content p-6 sm:p-8 md:p-10 relative overflow-hidden group flex flex-col h-full">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             
             <form className="space-y-6 flex-1 flex flex-col" onSubmit={e => e.preventDefault()}>
@@ -70,7 +70,7 @@ export default function Contact() {
           <div className="lg:col-span-2 flex flex-col gap-6 h-full">
 
             {/* Direct Information */}
-            <motion.div variants={fade} custom={2} className="glass p-6 sm:p-8 md:p-10 relative overflow-hidden border-white/[0.04] group">
+            <motion.div variants={fade} custom={2} className="glass-content p-6 sm:p-8 md:p-10 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <h2 className="font-display text-lg font-bold text-white/60 mb-8 tracking-tight">Direct Info</h2>
               <div className="space-y-6">
@@ -97,7 +97,7 @@ export default function Contact() {
             </motion.div>
 
             {/* Professional Links */}
-            <motion.div variants={fade} custom={3} className="flex-1 flex flex-col glass p-6 sm:p-8 md:p-10 relative overflow-hidden border-white/[0.04] group">
+            <motion.div variants={fade} custom={3} className="flex-1 flex flex-col glass-content p-6 sm:p-8 md:p-10 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <h2 className="font-display text-lg font-bold text-white/60 mb-6 tracking-tight">Links</h2>
               <div className="flex flex-col gap-3 flex-1">

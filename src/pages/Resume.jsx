@@ -58,7 +58,7 @@ export default function Resume() {
           {/* Left Column */}
           <div className="resume-left">
             {/* About */}
-            <div className="resume-section glass-card animate-fade-in-up">
+            <div className="resume-section glass-content animate-fade-in-up">
               <h2 className="resume-section-title">Profile</h2>
               <p className="resume-section-text">
                 Computer Science student with hands-on experience building full-stack web apps, mobile applications,
@@ -68,7 +68,7 @@ export default function Resume() {
             </div>
 
             {/* Education */}
-            <div className="resume-section glass-card animate-fade-in-up delay-100">
+            <div className="resume-section glass-content animate-fade-in-up delay-100">
               <h2 className="resume-section-title">Education</h2>
               {educationItems.map((e, i) => (
                 <div key={i} className="resume-edu-item">
@@ -83,7 +83,7 @@ export default function Resume() {
             </div>
 
             {/* Experience */}
-            <div className="resume-section glass-card animate-fade-in-up delay-200">
+            <div className="resume-section glass-content animate-fade-in-up delay-200">
               <h2 className="resume-section-title">Experience & Highlights</h2>
               {experience.map((item, i) => (
                 <div key={i} className="resume-exp-item">
@@ -103,7 +103,7 @@ export default function Resume() {
           {/* Right Column */}
           <div className="resume-right">
             {/* Skill Bars */}
-            <div className="resume-section glass-card animate-fade-in-up delay-100">
+            <div className="resume-section glass-content animate-fade-in-up delay-100">
               <h2 className="resume-section-title">Technical Skills</h2>
               <div className="resume-skill-bars">
                 {resumeSkills.map(({ label, level }) => (
@@ -124,7 +124,7 @@ export default function Resume() {
             </div>
 
             {/* All Skills */}
-            <div className="resume-section glass-card animate-fade-in-up delay-200">
+            <div className="resume-section glass-content animate-fade-in-up delay-200">
               <h2 className="resume-section-title">Technologies</h2>
               <div className="resume-tech-groups">
                 {skills.map((group) => (
@@ -141,7 +141,7 @@ export default function Resume() {
             </div>
 
             {/* Strengths */}
-            <div className="resume-section glass-card animate-fade-in-up delay-300">
+            <div className="resume-section glass-content animate-fade-in-up delay-300">
               <h2 className="resume-section-title">Soft Skills</h2>
               <div className="resume-soft-skills">
                 {[
