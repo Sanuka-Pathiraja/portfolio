@@ -63,36 +63,36 @@ export default function Home() {
       <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-[var(--accent)]/[0.04] rounded-full blur-[150px] pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-500/[0.03] rounded-full blur-[150px] pointer-events-none"></div>
 
-      <section className="section-max pt-[110px] sm:pt-[120px] lg:pt-[160px] pb-16 sm:pb-20 relative z-10 section-rhythm-lg">
+      <section className="section-max pt-6 sm:pt-8 lg:pt-14 pb-14 sm:pb-20 relative z-10 section-rhythm-lg">
         
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-16">
           
           {/* ── LEFT: Cinematic Typography & Narrative ── */}
-          <div className="flex-1 w-full relative">
+          <div className="w-full relative lg:col-span-7 order-2 lg:order-1">
 
-            <motion.h1 variants={fade} custom={1} className="font-display text-[clamp(3rem,5.5vw,5.5rem)] font-bold text-white leading-[1.02] tracking-[-0.04em] mb-4 drop-shadow-2xl">
+            <motion.h1 variants={fade} custom={1} className="font-display text-[clamp(2.25rem,11vw,5.5rem)] font-bold text-white leading-[1.02] tracking-[-0.04em] mb-3 sm:mb-4 drop-shadow-2xl text-center lg:text-left">
               Sanuka <br />
               <span className="text-gradient drop-shadow-[0_0_40px_rgba(103,232,249,0.2)] py-1 md:py-2 inline-block">Pathiraja</span><span className="text-white/20 inline-block">.</span>
             </motion.h1>
 
-            <motion.div variants={fade} custom={2} className="flex items-center gap-6 mb-6">
+            <motion.div variants={fade} custom={2} className="flex items-center justify-center lg:justify-start gap-4 sm:gap-6 mb-5 sm:mb-6">
               <div className="h-[1px] w-12 bg-gradient-to-r from-[var(--accent)] to-transparent"></div>
-              <h2 className="font-display text-[18px] md:text-[22px] font-semibold text-[color:var(--text-secondary)] tracking-tight">
+              <h2 className="font-display text-[16px] sm:text-[18px] md:text-[22px] font-semibold text-[color:var(--text-secondary)] tracking-tight text-center lg:text-left">
                 {PROFILE.role}
               </h2>
             </motion.div>
 
-            <motion.p variants={fade} custom={3} className="text-[15px] md:text-[17px] text-[color:var(--text-tertiary)] font-light leading-[1.7] max-w-xl mb-8 drop-shadow-lg">
+            <motion.p variants={fade} custom={3} className="text-[14px] sm:text-[15px] md:text-[17px] text-[color:var(--text-tertiary)] font-light leading-[1.7] max-w-xl mb-7 sm:mb-8 drop-shadow-lg text-center lg:text-left mx-auto lg:mx-0">
               {PROFILE.summary}
             </motion.p>
 
             {/* Interaction Row */}
-            <motion.div variants={fade} custom={4} className="flex flex-wrap items-center gap-4 sm:gap-5">
-              <Link to="/projects" className="w-full sm:w-auto justify-center px-8 py-4 rounded-full bg-white text-black text-[15px] font-bold no-underline hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-500 flex items-center gap-2 group/btn z-20 relative">
+            <motion.div variants={fade} custom={4} className="flex flex-col sm:flex-row items-center lg:items-start gap-4 sm:gap-5">
+              <Link to="/projects" className="w-full sm:w-auto justify-center px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white text-black text-[15px] font-bold no-underline hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-500 flex items-center gap-2 group/btn z-20 relative">
                 Explore Projects <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
               </Link>
               
-              <div className="flex gap-3">
+              <div className="flex gap-3 justify-center lg:justify-start">
                 {[
                   { href: PROFILE.github, Icon: Github, name: "GitHub" },
                   { href: PROFILE.linkedin, Icon: Linkedin, name: "LinkedIn" },
@@ -110,7 +110,7 @@ export default function Home() {
           </div>
 
           {/* ── RIGHT: Architectural Image Capsule ── */}
-          <motion.div variants={fade} custom={2} className="w-full max-w-[360px] lg:w-[40%] flex-shrink-0 relative">
+          <motion.div variants={fade} custom={2} className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-none lg:col-span-5 lg:w-full mx-auto lg:mx-0 order-1 lg:order-2 relative">
             
             {/* Outline Rings for Depth */}
             <div className="absolute inset-[-10%] rounded-full border border-white/[0.02] animate-pulse"></div>
@@ -140,13 +140,13 @@ export default function Home() {
       </section>
 
       {/* ═══ AFFILIATIONS & INSTITUTIONS ═══ */}
-      <motion.section variants={fade} custom={5} className="section-max pb-12 relative z-10 section-divider section-rhythm-md">
+      <motion.section variants={fade} custom={5} className="section-max pb-8 sm:pb-12 relative z-10 section-divider section-rhythm-md">
         <motion.div
           variants={firstViewCardGroup}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
         >
           {[
             { img: iitImg, name: "Informatics Institute of Technology" },
@@ -158,7 +158,7 @@ export default function Home() {
               key={i} 
               variants={firstViewCardItem}
               title={org.name}
-              className="glass-content p-4 sm:p-6 md:p-8 flex items-center justify-center group hover:border-[var(--accent)]/28 hover:bg-[var(--accent)]/[0.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-500 rounded-2xl md:rounded-[28px] relative overflow-hidden h-[clamp(5.5rem,20vw,9rem)]"
+              className="glass-content p-3 sm:p-6 md:p-8 flex items-center justify-center group hover:border-[var(--accent)]/28 hover:bg-[var(--accent)]/[0.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-500 rounded-2xl md:rounded-[28px] relative overflow-hidden h-[clamp(5.25rem,20vw,9rem)]"
             >
               <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/[0.15] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <SafeImage 

@@ -19,14 +19,14 @@ export default function ProjectCaseStudy() {
 
   if (!project) {
     return (
-      <section className="section-max pt-32 pb-28">
+      <section className="section-max pt-16 sm:pt-24 md:pt-32 pb-16 sm:pb-24 md:pb-28">
         <SEO
           title="Project Not Found"
           description="The requested case study could not be found."
           path={`/projects/${projectId}`}
         />
-        <div className="glass-content p-10 text-center">
-          <h1 className="font-display text-4xl text-white mb-4">Case Study Not Found</h1>
+        <div className="glass-content p-6 sm:p-10 text-center">
+          <h1 className="font-display text-[clamp(1.6rem,8vw,2.25rem)] text-white mb-4">Case Study Not Found</h1>
           <p className="text-[color:var(--text-tertiary)] mb-6">The project link may be outdated.</p>
           <Link className="px-6 py-3 rounded-full glass-sm no-underline text-white/80" to="/projects">
             Back to Projects
@@ -49,7 +49,7 @@ export default function ProjectCaseStudy() {
   }
 
   return (
-    <motion.section className="section-max pt-28 pb-28" initial="hidden" animate="show">
+    <motion.section className="section-max pt-10 sm:pt-16 md:pt-28 pb-14 sm:pb-20 md:pb-28" initial="hidden" animate="show">
       <SEO
         title={`${project.title} Case Study`}
         description={project.desc}
@@ -65,12 +65,12 @@ export default function ProjectCaseStudy() {
         <p className="text-[color:var(--text-secondary)] max-w-3xl">{project.role} · {project.timeline}</p>
       </motion.div>
 
-      <motion.div variants={sectionFade} custom={1} className="glass-content p-8 md:p-10 mb-6">
+      <motion.div variants={sectionFade} custom={1} className="glass-content p-5 sm:p-8 md:p-10 mb-4 sm:mb-6">
         <h2 className="font-display text-xl text-white/90 mb-3">Problem</h2>
         <p className="text-[color:var(--text-tertiary)]">{project.caseStudy.problem}</p>
       </motion.div>
 
-      <motion.div variants={sectionFade} custom={2} className="glass-content p-8 md:p-10 mb-6">
+      <motion.div variants={sectionFade} custom={2} className="glass-content p-5 sm:p-8 md:p-10 mb-4 sm:mb-6">
         <h2 className="font-display text-xl text-white/90 mb-3">Constraints</h2>
         <ul className="list-disc pl-5 space-y-2 text-[color:var(--text-tertiary)]">
           {project.caseStudy.constraints.map((item) => (
@@ -79,13 +79,13 @@ export default function ProjectCaseStudy() {
         </ul>
       </motion.div>
 
-      <motion.div variants={sectionFade} custom={3} className="glass-content p-8 md:p-10 mb-6">
+      <motion.div variants={sectionFade} custom={3} className="glass-content p-5 sm:p-8 md:p-10 mb-4 sm:mb-6">
         <h2 className="font-display text-xl text-white/90 mb-3">Architecture</h2>
         <p className="text-[color:var(--text-tertiary)]">{project.caseStudy.architecture}</p>
       </motion.div>
 
-      <motion.div variants={sectionFade} custom={4} className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <div className="glass-content p-8 md:p-10">
+      <motion.div variants={sectionFade} custom={4} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+        <div className="glass-content p-5 sm:p-8 md:p-10">
           <h2 className="font-display text-xl text-white/90 mb-3">Tradeoffs</h2>
           <ul className="list-disc pl-5 space-y-2 text-[color:var(--text-tertiary)]">
             {project.caseStudy.tradeoffs.map((item) => (
@@ -94,7 +94,7 @@ export default function ProjectCaseStudy() {
           </ul>
         </div>
 
-        <div className="glass-content p-8 md:p-10">
+        <div className="glass-content p-5 sm:p-8 md:p-10">
           <h2 className="font-display text-xl text-white/90 mb-3">Results</h2>
           <ul className="list-disc pl-5 space-y-2 text-[color:var(--text-tertiary)]">
             {project.caseStudy.results.map((item) => (
@@ -104,7 +104,7 @@ export default function ProjectCaseStudy() {
         </div>
       </motion.div>
 
-      <motion.div variants={sectionFade} custom={5} className="glass-content p-8 md:p-10 mb-10">
+      <motion.div variants={sectionFade} custom={5} className="glass-content p-5 sm:p-8 md:p-10 mb-8 sm:mb-10">
         <h2 className="font-display text-xl text-white/90 mb-3">What I Would Improve Next</h2>
         <p className="text-[color:var(--text-tertiary)]">{project.caseStudy.next}</p>
       </motion.div>

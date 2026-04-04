@@ -83,38 +83,35 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 md:pt-6 px-4 pointer-events-none">
-      <div className="section-max w-full flex items-center justify-between pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 pt-3 md:pt-5 pointer-events-none">
+      <div className={`section-max w-full pointer-events-auto rounded-2xl md:rounded-3xl border transition-all duration-500 ${scrolled || open ? 'glass-nav border-white/[0.12] bg-black/75 shadow-[0_16px_40px_rgba(0,0,0,0.45)]' : 'border-white/[0.06] bg-black/45 backdrop-blur-xl'}`}>
+        <div className="flex items-center justify-between px-3 py-2 sm:px-4 sm:py-3">
         
         {/* ── LEFT: Floating Logo Island ── */}
-        <div className={`pointer-events-auto transition-all duration-700 border border-transparent ${scrolled ? 'glass-nav rounded-2xl md:rounded-[20px] px-2.5 py-2 bg-black/70 shadow-[0_18px_42px_rgba(0,0,0,0.52)] backdrop-blur-xl border-white/[0.1]' : 'px-2 py-1.5 bg-transparent'}`}>
+        <div className="transition-all duration-300">
           <button
             type="button"
             onClick={handleBrandClick}
-            className="flex items-center gap-3 group relative pr-2 bg-transparent border-0 p-0 cursor-pointer"
+            className="flex items-center gap-2.5 sm:gap-3 group relative bg-transparent border-0 p-0 cursor-pointer"
             aria-label="Scroll to top"
           >
             <div className="absolute inset-0 bg-[var(--accent)] blur-xl opacity-0 group-hover:opacity-15 transition-opacity duration-700 rounded-full pointer-events-none"></div>
             
-            <div className="relative w-9 h-9 md:w-10 md:h-10 rounded-[12px] md:rounded-[14px] glass-sm flex items-center justify-center text-[var(--accent)] text-[13px] md:text-[14px] font-bold tracking-wider font-display border border-white/[0.1] group-hover:border-[var(--accent)]/45 group-hover:shadow-[0_0_24px_rgba(103,232,249,0.216)] transition-all duration-500 bg-white/[0.03] group-hover:bg-[var(--accent)]/12 z-10">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl glass-sm flex items-center justify-center text-[var(--accent)] text-[12px] sm:text-[13px] font-bold tracking-wider font-display border border-white/[0.1] group-hover:border-[var(--accent)]/45 group-hover:shadow-[0_0_24px_rgba(103,232,249,0.216)] transition-all duration-500 bg-white/[0.03] group-hover:bg-[var(--accent)]/12 z-10">
               SP
             </div>
-            <span className="font-display text-[15px] md:text-[17px] font-semibold tracking-tight text-white/90 group-hover:text-white transition-colors duration-300 drop-shadow-md relative z-10 max-[380px]:hidden">
+            <span className="font-display text-[15px] sm:text-[16px] md:text-[17px] font-semibold tracking-tight text-white/90 group-hover:text-white transition-colors duration-300 drop-shadow-md relative z-10 max-[360px]:hidden">
               {PROFILE.name.split(' ')[0]}
             </span>
           </button>
         </div>
 
         {/* ── RIGHT: Floating Nav Island ── */}
-        <div className="flex items-center gap-2 md:gap-3 pointer-events-auto">
+        <div className="flex items-center gap-2 md:gap-3">
           
           {/* Navigation Dock (Desktop) */}
           <nav
-            className={`hidden md:flex items-center gap-1.5 transition-all duration-700 border rounded-full relative overflow-hidden ${
-            scrolled 
-              ? 'px-2.5 py-2 border-white/[0.1] bg-black/70 shadow-[0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl' 
-              : 'px-2 py-1.5 border-white/[0.08] bg-white/[0.01] glass-sm'
-          }`}
+            className="hidden md:flex items-center gap-1.5 border rounded-full relative overflow-hidden px-2 py-1.5 border-white/[0.08] bg-white/[0.01] glass-sm"
           >
             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.18] to-transparent pointer-events-none" />
 
@@ -152,7 +149,7 @@ export default function Navbar() {
             type="button"
             ref={mobileToggleRef}
             className={`md:hidden relative w-11 h-11 rounded-2xl flex items-center justify-center text-white/70 hover:text-white border transition-all shrink-0 ${
-              scrolled ? 'glass-nav bg-black/60 shadow-lg border-white/[0.08]' : 'glass-sm border-white/[0.05] bg-white/[0.02]'
+              scrolled || open ? 'glass-nav bg-black/60 shadow-lg border-white/[0.1]' : 'glass-sm border-white/[0.05] bg-white/[0.02]'
             }`}
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
@@ -166,19 +163,20 @@ export default function Navbar() {
           </button>
 
         </div>
+        </div>
       </div>
 
       {/* ── MOBILE DROPDOWN ── */}
       {open && (
-        <div ref={mobileMenuRef} id="mobile-menu" className="md:hidden absolute top-[calc(100%+12px)] left-4 right-4 glass rounded-[24px] border border-white/[0.08] shadow-[0_40px_80px_rgba(0,0,0,0.8)] backdrop-blur-3xl px-4 py-5 flex flex-col gap-2 z-50 bg-[#000000]/80 pointer-events-auto">
+        <div ref={mobileMenuRef} id="mobile-menu" className="md:hidden absolute top-[calc(100%+10px)] left-3 right-3 sm:left-4 sm:right-4 glass-content rounded-2xl border border-white/[0.12] shadow-[0_30px_60px_rgba(0,0,0,0.65)] px-4 py-4 flex flex-col gap-2 z-50 pointer-events-auto">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               end={to === '/'}
               className={({ isActive }) =>
-                `text-[14px] font-mono tracking-wide uppercase py-3.5 px-4 rounded-[16px] no-underline transition-all ${
-                  isActive ? 'bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/20' : 'text-white/50 hover:text-white hover:bg-white/[0.05] border border-transparent'
+                `text-[13px] font-mono tracking-[0.12em] uppercase py-3 px-4 rounded-xl no-underline transition-all ${
+                  isActive ? 'bg-[var(--accent)]/12 text-[var(--accent)] border border-[var(--accent)]/25' : 'text-white/65 hover:text-white hover:bg-white/[0.05] border border-transparent'
                 }`
               }
               onClick={() => setOpen(false)}

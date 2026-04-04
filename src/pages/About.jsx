@@ -26,32 +26,32 @@ export default function About() {
         path="/about"
       />
 
-      <section className="section-max pt-20 pb-40">
+      <section className="section-max pt-8 sm:pt-12 md:pt-20 pb-16 sm:pb-24 md:pb-40">
 
-        <motion.div variants={fade} custom={0} className="text-center mb-20">
+        <motion.div variants={fade} custom={0} className="text-center mb-10 sm:mb-14 md:mb-20">
           <p className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-white/15 mb-5">// Personal Story</p>
-          <h1 className="font-display text-5xl md:text-7xl font-bold text-white tracking-[-0.03em] leading-none mb-6">
+          <h1 className="font-display text-[clamp(2rem,10vw,4.4rem)] font-bold text-white tracking-[-0.03em] leading-none mb-6">
             Beyond the <span className="text-gradient">Binary</span>
           </h1>
-          <p className="text-[17px] text-white/30 max-w-xl mx-auto font-light leading-relaxed">
+          <p className="text-[15px] sm:text-[17px] text-white/30 max-w-xl mx-auto font-light leading-relaxed">
             The intersection of elegant design and system mechanics.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-6">
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-6">
 
 
 
           {/* ── Personal Journey ── */}
           <motion.div variants={fade} custom={1} className="glass-content p-4 sm:p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
                 <Sparkles size={15} />
               </div>
-              <h2 className="font-display text-xl font-bold text-white/70 tracking-tight">{ABOUT_CONTENT.journey.title}</h2>
+              <h2 className="font-display text-[13px] sm:text-xl font-bold text-white/70 tracking-tight">{ABOUT_CONTENT.journey.title}</h2>
             </div>
-            <p className="text-[15px] text-white/30 font-light leading-relaxed">
+            <p className="text-[12px] sm:text-[15px] text-white/30 font-light leading-relaxed line-clamp-6 sm:line-clamp-none">
               {ABOUT_CONTENT.journey.content}
             </p>
             <div className="h-[2px] w-16 bg-gradient-to-r from-[var(--accent)]/20 to-transparent rounded-full mt-8"></div>
@@ -60,19 +60,19 @@ export default function About() {
           {/* ── Soft Skills ── */}
           <motion.div variants={fade} custom={2} className="glass-content p-4 sm:p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
                 <Hash size={15} />
               </div>
-              <h2 className="font-display text-xl font-bold text-white/70 tracking-tight">Soft Skills</h2>
+              <h2 className="font-display text-[13px] sm:text-xl font-bold text-white/70 tracking-tight">Soft Skills</h2>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-3 sm:space-y-6">
               {ABOUT_CONTENT.softSkills.map((s, i) => (
                 <div key={i} className="flex gap-4 group/item">
                   <div className="w-[2px] h-auto bg-white/[0.04] group-hover/item:bg-[var(--accent)]/30 transition-colors duration-500 rounded-full flex-shrink-0 mt-1"></div>
                   <div>
-                    <h4 className="font-display text-[15px] font-semibold text-white/50 group-hover/item:text-white/70 transition-colors">{s.name}</h4>
-                    <p className="text-[13px] text-white/20 font-light mt-1 leading-relaxed">{s.desc}</p>
+                    <h4 className="font-display text-[12px] sm:text-[15px] font-semibold text-white/50 group-hover/item:text-white/70 transition-colors">{s.name}</h4>
+                    <p className="text-[11px] sm:text-[13px] text-white/20 font-light mt-1 leading-relaxed line-clamp-3 sm:line-clamp-none">{s.desc}</p>
                   </div>
                 </div>
               ))}
@@ -82,19 +82,19 @@ export default function About() {
           {/* ── Community ── */}
           <motion.div variants={fade} custom={3} className="glass-content p-4 sm:p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
                 <Users size={15} />
               </div>
-              <h2 className="font-display text-xl font-bold text-white/70 tracking-tight">Community</h2>
+              <h2 className="font-display text-[13px] sm:text-xl font-bold text-white/70 tracking-tight">Community</h2>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-3 sm:space-y-6">
               {ABOUT_CONTENT.community.map((c, i) => (
                 <div key={i} className="flex gap-4 group/item">
                   <div className="w-[2px] h-auto bg-white/[0.04] group-hover/item:bg-[var(--accent)]/30 transition-colors duration-500 rounded-full flex-shrink-0 mt-1"></div>
                   <div>
-                    <h4 className="font-display text-[15px] font-semibold text-white/50 group-hover/item:text-white/70 transition-colors">{c.name}</h4>
-                    <p className="text-[13px] text-white/20 font-light mt-1 leading-relaxed">{c.desc}</p>
+                    <h4 className="font-display text-[12px] sm:text-[15px] font-semibold text-white/50 group-hover/item:text-white/70 transition-colors">{c.name}</h4>
+                    <p className="text-[11px] sm:text-[13px] text-white/20 font-light mt-1 leading-relaxed line-clamp-3 sm:line-clamp-none">{c.desc}</p>
                   </div>
                 </div>
               ))}
@@ -104,13 +104,13 @@ export default function About() {
           {/* ── Interests ── */}
           <motion.div variants={fade} custom={4} className="glass-content p-4 sm:p-8 md:p-10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-8">
               <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
                 <Heart size={15} />
               </div>
-              <h2 className="font-display text-xl font-bold text-white/70 tracking-tight">Interests</h2>
+              <h2 className="font-display text-[13px] sm:text-xl font-bold text-white/70 tracking-tight">Interests</h2>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {ABOUT_CONTENT.interests.map(interest => (
                 <div key={interest} className="glass-sm px-5 py-3.5 border-white/[0.03] hover:border-white/[0.08] transition-all duration-300 text-center group/interest">
                   <span className="font-mono text-[11px] font-bold tracking-[0.1em] uppercase text-white/20 group-hover/interest:text-white/40 transition-colors">{interest}</span>
@@ -122,7 +122,7 @@ export default function About() {
         </div>
 
         {/* ── Educational History (New Image Cards) ── */}
-        <div className="mt-28">
+        <div className="mt-14 sm:mt-20 md:mt-28">
           <motion.div variants={fade} custom={4} className="flex items-center justify-center gap-4 mb-12">
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[var(--accent)]/40"></div>
             <div className="w-12 h-12 rounded-[16px] glass-sm flex items-center justify-center text-[var(--accent)] border-white/[0.04]">

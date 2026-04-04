@@ -70,10 +70,10 @@ export default function Projects() {
         jsonLd={projectListSchema}
       />
 
-      <section className="section-max pt-16 md:pt-20 pb-16 md:pb-20 section-rhythm-md">
+      <section className="section-max pt-8 sm:pt-12 md:pt-16 pb-12 md:pb-20 section-rhythm-md">
 
         {/* ── CORE ENGINEERING INFRASTRUCTURE (THE CUPBOARD) ── */}
-        <motion.div variants={fade} custom={0} className="mb-20 md:mb-32 mt-3 md:mt-4">
+        <motion.div variants={fade} custom={0} className="mb-14 sm:mb-20 md:mb-28 mt-1 sm:mt-2 md:mt-4">
           
           <div className="text-center mb-10">
             <span className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-[var(--accent)] mb-3 block drop-shadow-md">Technology Stack</span>
@@ -83,20 +83,20 @@ export default function Projects() {
           </div>
 
           {/* The Cupboard Container */}
-          <div className="glass p-6 md:p-8 rounded-[36px] border-white/[0.04] shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] relative">
+          <div className="glass p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-[28px] md:rounded-[36px] border-white/[0.04] shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] relative">
             <motion.div
               variants={firstViewCardGroup}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 relative z-10"
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 relative z-10"
             >
               
               {TECH_ICONS.map((tech, idx) => (
                 <motion.div
                   key={tech.name}
                   variants={firstViewCardItem}
-                  className="bg-black/60 border border-white/[0.03] p-6 rounded-[20px] flex flex-col items-center justify-center gap-5 group hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/[0.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 relative overflow-hidden"
+                  className="bg-black/60 border border-white/[0.03] p-4 sm:p-5 md:p-6 rounded-2xl flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-5 group hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/[0.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 relative overflow-hidden"
                 >
                   {/* Top glass reflection line for physical cube authentic feel */}
                   <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/[0.15] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -122,7 +122,7 @@ export default function Projects() {
       </section>
 
       {/* ── CORE DISCIPLINES MARQUEE ── */}
-      <motion.section variants={fade} custom={1} className="w-full border-y border-white/[0.03] bg-white/[0.01] py-6 md:py-8 mb-20 md:mb-32 relative overflow-hidden backdrop-blur-sm z-10">
+      <motion.section variants={fade} custom={1} className="w-full border-y border-white/[0.03] bg-white/[0.01] py-5 sm:py-6 md:py-8 mb-14 sm:mb-20 md:mb-32 relative overflow-hidden backdrop-blur-sm z-10">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
 
@@ -133,7 +133,7 @@ export default function Projects() {
             <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full animate-pulse shadow-[0_0_10px_var(--accent)]"></span>
           </div>
 
-          <div className="animate-marquee flex items-center gap-10 md:gap-16 px-10">
+          <div className="animate-marquee flex items-center gap-8 md:gap-16 px-6 sm:px-10">
             {marqueeDisciplines.map((discipline, i) => (
               <div key={`${discipline}-${i}`} className="flex items-center gap-10 md:gap-16 group/marquee cursor-default">
                 <span className="font-display text-[13px] md:text-[15px] font-medium tracking-[0.15em] uppercase text-white/40 group-hover/marquee:text-[var(--accent)] transition-colors whitespace-nowrap">
@@ -147,10 +147,10 @@ export default function Projects() {
       </motion.section>
 
       {/* Re-open container for project cards */}
-      <section className="section-max pb-24 md:pb-40 section-divider section-rhythm-lg">
+      <section className="section-max pb-16 sm:pb-24 md:pb-40 section-divider section-rhythm-lg">
         
         {/* ── PROJECT CARDS ── */}
-        <motion.div variants={fade} custom={2} className="text-center mb-14 md:mb-20">
+        <motion.div variants={fade} custom={2} className="text-center mb-10 sm:mb-14 md:mb-20">
           <p className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-white/15 mb-5">// Project Cards</p>
           <h1 className="font-display text-[clamp(2.25rem,10vw,4.5rem)] font-bold text-white tracking-[-0.03em] leading-[0.97] mb-6">
             Selected <span className="text-gradient">Creations</span>
@@ -165,14 +165,14 @@ export default function Projects() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.16 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
         >
 
           {PROJECTS.map((proj, i) => (
             <motion.div
               key={proj.id}
               variants={firstViewCardItem}
-              className="glass-content group p-8 md:p-10 flex flex-col relative overflow-hidden border-white/[0.08] hover:border-white/[0.14]"
+              className="glass-content group p-5 sm:p-7 md:p-10 flex flex-col relative overflow-hidden border-white/[0.08] hover:border-white/[0.14]"
             >
               {/* Top edge light */}
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

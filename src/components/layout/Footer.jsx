@@ -12,12 +12,12 @@ export default function Footer() {
   }, [])
 
   return (
-    <footer className="relative z-10 mt-auto pt-20 pb-10">
+    <footer className="relative z-10 mt-auto pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10">
       <div className="section-max">
-        <div className="glass p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 border-white/[0.04]">
+        <div className="glass-content p-5 sm:p-7 md:p-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-5 sm:gap-6 border-white/[0.08]">
 
           {/* Left: Branding */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center lg:justify-start gap-3">
             <div className="w-8 h-8 rounded-[10px] glass-sm flex items-center justify-center text-[var(--accent)] text-[11px] font-bold tracking-wider font-display border-[rgba(103,232,249,0.12)]">
               SP
             </div>
@@ -30,18 +30,18 @@ export default function Footer() {
           </div>
 
           {/* Center: System Status */}
-          <div className="glass-content flex items-center gap-3 px-4 md:px-5 py-2 max-w-full">
+          <div className="glass-sm flex items-center justify-center gap-3 px-4 md:px-5 py-2.5 max-w-full rounded-2xl border-white/[0.08]">
             <span className="relative flex h-[6px] w-[6px]">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-50"></span>
               <span className="relative inline-flex rounded-full h-[6px] w-[6px] bg-[var(--accent)]"></span>
             </span>
-            <span className="font-mono text-[9px] md:text-[10px] font-medium text-[color:var(--text-tertiary)] tracking-[0.12em] md:tracking-[0.15em] uppercase break-words">
+            <span className="font-mono text-[9px] md:text-[10px] font-medium text-[color:var(--text-tertiary)] tracking-[0.1em] md:tracking-[0.14em] uppercase break-words text-center">
               Online · Colombo, LK · {time.toLocaleTimeString('en-US', { hour12: false, timeZone: 'Asia/Colombo' })}
             </span>
           </div>
 
           {/* Right: Socials */}
-          <div className="flex items-center gap-2 flex-wrap justify-center">
+          <div className="flex items-center gap-2 flex-wrap justify-center lg:justify-end">
             {[
               { href: PROFILE.github, Icon: Github, label: 'Github' },
               { href: PROFILE.linkedin, Icon: Linkedin, label: 'LinkedIn' },

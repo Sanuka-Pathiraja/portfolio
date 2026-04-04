@@ -44,7 +44,7 @@ export default function Resume() {
           <p className="section-subtitle animate-fade-in-up delay-200">
             A snapshot of my technical background, education, and key achievements.
           </p>
-          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--accent)]/10 px-4 py-2 animate-fade-in-up delay-200">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--accent)]/10 px-3 sm:px-4 py-2 animate-fade-in-up delay-200">
             <span className="h-2 w-2 rounded-full bg-[var(--accent)] animate-pulse" aria-hidden="true" />
             <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-[var(--accent)]">
               {AVAILABILITY.badge} · {AVAILABILITY.internshipWindow}

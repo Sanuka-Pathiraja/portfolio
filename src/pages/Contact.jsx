@@ -50,19 +50,19 @@ export default function Contact() {
         path="/contact"
       />
 
-      <section className="section-max pt-16 md:pt-20 pb-24 md:pb-40">
+      <section className="section-max pt-8 sm:pt-12 md:pt-20 pb-16 sm:pb-24 md:pb-40">
 
-        <motion.div variants={fade} custom={0} className="text-center mb-14 md:mb-20">
+        <motion.div variants={fade} custom={0} className="text-center mb-10 sm:mb-14 md:mb-20">
           <p className="font-mono text-[11px] font-medium tracking-[0.2em] uppercase text-white/15 mb-5">// Get In Touch</p>
           <h1 className="font-display text-[clamp(2.25rem,10vw,4.5rem)] font-bold text-white tracking-[-0.03em] leading-none mb-6">
             Let's Start a <span className="text-gradient">Conversation</span>
           </h1>
-          <p className="text-[17px] text-white/30 max-w-xl mx-auto font-light leading-relaxed">
+          <p className="text-[15px] sm:text-[17px] text-white/30 max-w-xl mx-auto font-light leading-relaxed">
             I'm currently seeking internships and am always open to discussing full-stack projects, DevOps, or system architectures.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6 items-stretch">
 
           {/* ── Contact Form ── */}
           <motion.div variants={fade} custom={1} className="lg:col-span-3 glass-content p-6 sm:p-8 md:p-10 relative overflow-hidden group flex flex-col h-full">

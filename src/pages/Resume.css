@@ -8,7 +8,7 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
 .resume-body__grid {
@@ -27,10 +27,10 @@
 
 /* Sections */
 .resume-section {
-  padding: 28px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .resume-section-title {
@@ -208,13 +208,50 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .resume-body__grid { grid-template-columns: 1fr; }
+  .resume-body__grid { grid-template-columns: 1fr; gap: 16px; }
+  .resume-left,
+  .resume-right { gap: 16px; }
 }
 
 @media (max-width: 600px) {
-  .resume-hero__actions { flex-direction: column; }
+  .resume-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .resume-hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .resume-section {
+    padding: 16px;
+  }
+
+  .resume-section-title {
+    font-size: 0.72rem;
+  }
+
+  .resume-section-text,
+  .resume-edu-detail,
+  .resume-exp-desc {
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+
+  .resume-skill-bar__header {
+    font-size: 0.82rem;
+  }
+
   .resume-edu-header { flex-direction: column; gap: 2px; }
   .resume-exp-header { flex-direction: column; gap: 2px; }
+}
+
+@media (min-width: 768px) {
+  .resume-section {
+    padding: 24px;
+    gap: 16px;
+  }
 }
 
 @media (min-width: 1440px) {

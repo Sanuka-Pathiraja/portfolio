@@ -145,7 +145,7 @@ export default function Layout() {
       )}
 
       <Navbar />
-      <main id="main-content" className="flex-1 pt-[80px] relative z-10" tabIndex={-1}>
+      <main id="main-content" className="flex-1 pt-[86px] sm:pt-[92px] md:pt-[96px] relative z-10" tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />
