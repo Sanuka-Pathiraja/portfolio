@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:stable": "kill-port 5173 5174 4173 && vite --host --port 5173 --strictPort --force",
+    "preview:stable": "kill-port 4173 && vite preview --host --port 4173 --strictPort",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -34,6 +36,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "kill-port": "^2.0.1",
     "terser": "^5.46.1",
     "vite": "^8.0.1",
     "vite-plugin-compression": "^0.5.1"

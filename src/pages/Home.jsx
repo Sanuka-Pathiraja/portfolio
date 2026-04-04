@@ -158,7 +158,7 @@ export default function Home() {
               key={i} 
               variants={firstViewCardItem}
               title={org.name}
-              className="glass p-4 sm:p-6 md:p-8 flex items-center justify-center group hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/[0.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 rounded-2xl md:rounded-[28px] relative overflow-hidden h-[clamp(5.5rem,20vw,9rem)]"
+              className="glass-content p-4 sm:p-6 md:p-8 flex items-center justify-center group hover:border-[var(--accent)]/28 hover:bg-[var(--accent)]/[0.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-500 rounded-2xl md:rounded-[28px] relative overflow-hidden h-[clamp(5.5rem,20vw,9rem)]"
             >
               <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/[0.15] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <SafeImage 

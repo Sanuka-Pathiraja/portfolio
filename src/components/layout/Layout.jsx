@@ -4,15 +4,26 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 
 export default function Layout() {
+  const [ambientEnabled, setAmbientEnabled] = useState(false)
   const [shootingStar, setShootingStar] = useState(null)
   const [shootingRain, setShootingRain] = useState(null)
 
   useEffect(() => {
-      let rainCleanupTimer
-      let rainIntervalId
-
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) return undefined
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
+
+    setAmbientEnabled(!prefersReducedMotion && !isCoarsePointer)
+  }, [])
+
+  useEffect(() => {
+    let rainCleanupTimer
+    let rainIntervalId
+
+    if (!ambientEnabled) {
+      setShootingStar(null)
+      setShootingRain(null)
+      return undefined
+    }
 
     const randomRange = (min, max) => Math.random() * (max - min) + min
     const sides = ['left', 'right', 'top', 'bottom']
@@ -31,7 +42,7 @@ export default function Layout() {
       if (startSide === 'left') endCandidates = ['right']
       else if (startSide === 'right') endCandidates = ['left']
       else if (startSide === 'top') endCandidates = ['left', 'right']
-      else endCandidates = ['left', 'right'] // bottom never goes to top
+      else endCandidates = ['left', 'right']
 
       const endSide = endCandidates[Math.floor(Math.random() * endCandidates.length)]
 
@@ -79,17 +90,11 @@ export default function Layout() {
       }, 2200)
     }
 
-    // First effect fires 10 seconds after user enters the site.
-    const firstLaunchTimer = setTimeout(() => {
-      launchShootingStar()
-    }, 10000)
-
-    // Trigger first meteor shower after 50 seconds, then every 2 minutes.
+    const firstLaunchTimer = setTimeout(launchShootingStar, 10000)
     const rainTimer = setTimeout(() => {
       launchShootingRain()
       rainIntervalId = setInterval(launchShootingRain, 120000)
     }, 50000)
-
     const intervalId = setInterval(launchShootingStar, 90000)
 
     return () => {
@@ -99,7 +104,7 @@ export default function Layout() {
       clearInterval(intervalId)
       if (rainCleanupTimer) clearTimeout(rainCleanupTimer)
     }
-  }, [])
+  }, [ambientEnabled])
 
   return (
     <div className="flex flex-col min-h-screen bg-black relative overflow-hidden">
@@ -110,11 +115,10 @@ export default function Layout() {
         Skip to main content
       </a>
 
-      {/* Starfield — 3 layers at different zoom speeds */}
-      <div className="stars-layer stars-1"></div>
-      <div className="stars-layer stars-2"></div>
-      <div className="stars-layer stars-3"></div>
-      {shootingStar && (
+      {ambientEnabled && <div className="stars-layer stars-1"></div>}
+      {ambientEnabled && <div className="stars-layer stars-2"></div>}
+      {ambientEnabled && <div className="stars-layer stars-3"></div>}
+      {ambientEnabled && shootingStar && (
         <div
           key={shootingStar.id}
           className="shooting-star"
@@ -123,7 +127,7 @@ export default function Layout() {
           aria-hidden="true"
         />
       )}
-      {shootingRain && (
+      {ambientEnabled && shootingRain && (
         <div className="shooting-rain" aria-hidden="true" key={shootingRain.id}>
           {shootingRain.stars.map((star, index) => (
             <span

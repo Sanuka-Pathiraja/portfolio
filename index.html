@@ -35,6 +35,24 @@
 
     <script>
       (function () {
+        if (!('serviceWorker' in navigator)) return
+
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            return Promise.all(regs.map(function (reg) { return reg.unregister() }))
+          }).catch(function () {})
+
+          if ('caches' in window) {
+            caches.keys().then(function (keys) {
+              return Promise.all(keys.map(function (key) { return caches.delete(key) }))
+            }).catch(function () {})
+          }
+        })
+      })()
+    </script>
+
+    <script>
+      (function () {
         function paintError(message) {
           var panel = document.getElementById('startup-error-panel')
           if (!panel) {

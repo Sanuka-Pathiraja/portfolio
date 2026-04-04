@@ -52,27 +52,19 @@ if (import.meta.env.DEV) {
 
 // Keep service workers out of local development to avoid stale-cache blank screens.
 if ('serviceWorker' in navigator) {
-  if (import.meta.env.DEV) {
-    window.addEventListener('load', async () => {
+  window.addEventListener('load', async () => {
+    try {
       const regs = await navigator.serviceWorker.getRegistrations()
       await Promise.all(regs.map((reg) => reg.unregister()))
 
       if ('caches' in window) {
         const keys = await caches.keys()
-        await Promise.all(
-          keys
-            .filter((key) => key.startsWith('portfolio-'))
-            .map((key) => caches.delete(key))
-        )
+        await Promise.all(keys.map((key) => caches.delete(key)))
       }
-    })
-  } else if (import.meta.env.PROD) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch((err) => {
-        console.log('Service Worker registration failed:', err)
-      })
-    })
-  }
+    } catch (err) {
+      console.warn('Service worker cleanup skipped:', err)
+    }
+  })
 }
 
 createRoot(document.getElementById('root')).render(
@@ -91,6 +83,15 @@ const bootStatus = document.getElementById('boot-status')
 if (bootStatus) {
   bootStatus.textContent = 'App mounted.'
   setTimeout(() => {
-    bootStatus.remove()
-  }, 600)
+    const rootEl = document.getElementById('root')
+    const hasRenderedContent = Boolean(rootEl && rootEl.childElementCount > 0)
+
+    if (hasRenderedContent) {
+      bootStatus.remove()
+    } else {
+      bootStatus.textContent = 'App failed to mount. Refresh once (Ctrl+F5).'
+      bootStatus.style.borderColor = 'rgba(255,100,100,0.35)'
+      bootStatus.style.color = '#ffd1d1'
+    }
+  }, 900)
 }

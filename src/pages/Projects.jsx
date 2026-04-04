@@ -172,7 +172,7 @@ export default function Projects() {
             <motion.div
               key={proj.id}
               variants={firstViewCardItem}
-              className="glass group p-8 md:p-10 flex flex-col relative overflow-hidden border-white/[0.04] hover:border-white/[0.08]"
+              className="glass-content group p-8 md:p-10 flex flex-col relative overflow-hidden border-white/[0.08] hover:border-white/[0.14]"
             >
               {/* Top edge light */}
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -232,7 +232,7 @@ export default function Projects() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-6 relative z-10">
                 {proj.metrics?.map((metric) => (
-                  <div key={metric.label} className="rounded-xl border border-white/[0.06] bg-white/[0.01] px-3 py-2">
+                  <div key={metric.label} className="rounded-xl border border-white/[0.1] bg-black/55 backdrop-blur-md px-3 py-2">
                     <p className="font-mono text-[9px] tracking-[0.15em] uppercase text-white/25">{metric.label}</p>
                     <p className="text-[12px] text-white/70 mt-1">{metric.value}</p>
                   </div>
@@ -248,7 +248,7 @@ export default function Projects() {
               <div className="relative z-10 mb-2">
                 <Link
                   to={`/projects/${proj.id}`}
-                  className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-4 py-2 rounded-full glass-sm no-underline text-white/75 hover:text-white transition-colors"
+                  className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-4 py-2 rounded-full glass-sm bg-black/45 border border-white/[0.1] no-underline text-white/80 hover:text-white hover:border-white/[0.2] transition-colors"
                   aria-label={`Read case study for ${proj.title}`}
                   onClick={() => trackEvent('project_case_study_click', { projectId: proj.id })}
                 >
@@ -259,7 +259,7 @@ export default function Projects() {
               {/* Stack Tags */}
               <div className="flex flex-wrap gap-2 pt-6 border-t border-white/[0.04] relative z-10">
                 {proj.stack.map(tech => (
-                  <span key={tech} className="font-mono text-[9px] font-bold tracking-[0.15em] uppercase text-white/15 glass-sm px-3 py-1 border-white/[0.03] group-hover:text-white/25 transition-colors">
+                  <span key={tech} className="font-mono text-[9px] font-bold tracking-[0.15em] uppercase text-white/25 glass-sm bg-black/45 border border-white/[0.08] px-3 py-1 group-hover:text-white/40 transition-colors">
                     {tech}
                   </span>
                 ))}

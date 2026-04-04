@@ -315,6 +315,12 @@ body {
   .glass {
     border-radius: 22px;
   }
+
+  .stars-layer,
+  .shooting-star,
+  .shooting-rain {
+    display: none !important;
+  }
 }
 
 @media (max-width: 420px) {
@@ -339,19 +345,36 @@ body {
   .glass-sm,
   .glass-nav,
   .liquid-pill-active {
-    backdrop-filter: blur(16px) saturate(120%);
-    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(8, 8, 8, 0.94) !important;
+    box-shadow: none !important;
   }
 
-  .stars-2,
-  .stars-3 {
-    display: none;
+  .stars-layer,
+  .shooting-star,
+  .shooting-rain {
+    display: none !important;
   }
 
   .glass:hover,
   .glass-content:hover,
   .glass-sm:hover {
     box-shadow: none;
+  }
+
+  .animate-float,
+  .animate-float-delayed,
+  .animate-glow,
+  .animate-marquee,
+  .ticker-track,
+  .shooting-star,
+  .shooting-rain__star {
+    animation: none !important;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
   }
 }
 
