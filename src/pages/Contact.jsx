@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, Phone, MapPin, Send } from 'lucide-react'
-import emailjs from '@emailjs/browser'
 import { PROFILE } from '../data/info'
 import SEO from '../components/seo/SEO'
 import { trackEvent } from '../utils/analytics'
@@ -15,14 +14,47 @@ const fade = {
 }
 
 export default function Contact() {
-  const formRef = useRef(null)
-  const [isSending, setIsSending] = useState(false)
   const [submitState, setSubmitState] = useState({ type: '', message: '' })
+
+  const openComposeFallback = (fullName, email, message, formEl) => {
+    const subject = encodeURIComponent(`Portfolio Contact - ${fullName}`)
+    const body = encodeURIComponent(`Name: ${fullName}\nEmail: ${email}\n\nMessage:\n${message}`)
+    const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PROFILE.email)}&su=${subject}&body=${body}`
+    const mailtoCompose = `mailto:${PROFILE.email}?subject=${subject}&body=${body}`
+
+    try {
+      const composeWindow = window.open(gmailCompose, '_blank', 'noopener,noreferrer')
+      if (!composeWindow) {
+        // Some desktop browsers block popups; navigate directly as a guaranteed fallback.
+        window.location.assign(gmailCompose)
+      }
+      setSubmitState({
+        type: 'success',
+        message: `Compose opened. If your browser blocks it, use direct email: ${PROFILE.email}.`
+      })
+      formEl.reset()
+      return true
+    } catch {
+      try {
+        window.location.href = mailtoCompose
+        setSubmitState({
+          type: 'success',
+          message: `Your mail app was opened. If it did not open, email directly at ${PROFILE.email}.`
+        })
+        formEl.reset()
+        return true
+      } catch {
+        setSubmitState({
+          type: 'error',
+          message: `Could not open compose. Please send directly to ${PROFILE.email}.`
+        })
+        return false
+      }
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    if (!formRef.current || isSending) return
 
     const formData = new FormData(e.currentTarget)
     const fullName = String(formData.get('user_name') || '').trim()
@@ -34,34 +66,8 @@ export default function Contact() {
       return
     }
 
-    const SERVICE_ID = 'service_y53oie6'
-    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_prx500c'
-    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY'
-
-    if (!TEMPLATE_ID || PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-      setSubmitState({
-        type: 'error',
-        message: 'Configure EmailJS template and public key in VITE_EMAILJS_TEMPLATE_ID and VITE_EMAILJS_PUBLIC_KEY.'
-      })
-      return
-    }
-
     trackEvent('contact_intent_submit', { source: 'contact_form' })
-
-    try {
-      setIsSending(true)
-      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
-      setSubmitState({ type: 'success', message: "Message sent. I'll get back to you soon." })
-      e.currentTarget.reset()
-    } catch (error) {
-      setSubmitState({ type: 'error', message: 'Failed to send message. Please try again later.' })
-      trackEvent('contact_submit_error', {
-        source: 'contact_form',
-        message: error instanceof Error ? error.message : 'emailjs_error'
-      })
-    } finally {
-      setIsSending(false)
-    }
+    openComposeFallback(fullName, email, message, e.currentTarget)
   }
 
   return (
@@ -90,7 +96,7 @@ export default function Contact() {
           <motion.div variants={fade} custom={1} className="lg:col-span-3 glass-content p-6 sm:p-8 md:p-10 relative overflow-hidden group flex flex-col h-full">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             
-            <form ref={formRef} className="space-y-6 flex-1 flex flex-col" onSubmit={handleSubmit}>
+            <form className="space-y-6 flex-1 flex flex-col" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <label htmlFor="contact-full-name" className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-white/15 ml-1">Full Name</label>
                 <input
@@ -129,8 +135,8 @@ export default function Contact() {
                 </p>
               ) : null}
               <div className="pt-2 mt-auto">
-                <button type="submit" disabled={isSending} className="w-full py-4 rounded-full bg-white text-black text-[15px] font-semibold hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-500 flex items-center justify-center gap-2.5 group disabled:opacity-70 disabled:cursor-not-allowed">
-                  {isSending ? 'Sending...' : 'Send Message'} <Send size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <button type="submit" className="w-full py-4 rounded-full bg-white text-black text-[15px] font-semibold hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-500 flex items-center justify-center gap-2.5 group">
+                  Send Message <Send size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </button>
               </div>
             </form>
