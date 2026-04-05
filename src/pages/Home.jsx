@@ -41,6 +41,22 @@ const firstViewCardItem = {
 }
 
 export default function Home() {
+  const handleEmailClick = (event) => {
+    event.preventDefault()
+
+    const subject = encodeURIComponent('Portfolio Inquiry')
+    const body = encodeURIComponent('Hi Sanuka,\n\nI would like to discuss...')
+    const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PROFILE.email)}&su=${subject}&body=${body}`
+    const mailtoCompose = `mailto:${PROFILE.email}?subject=${subject}&body=${body}`
+
+    const popup = window.open(gmailCompose, '_blank', 'noopener,noreferrer')
+    if (!popup) {
+      window.location.href = mailtoCompose
+    }
+
+    trackEvent('social_click', { placement: 'hero', network: 'Email' })
+  }
+
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -96,11 +112,11 @@ export default function Home() {
                 {[
                   { href: PROFILE.github, Icon: Github, name: "GitHub" },
                   { href: PROFILE.linkedin, Icon: Linkedin, name: "LinkedIn" },
-                  { href: `mailto:${PROFILE.email}`, Icon: Mail, name: "Email" },
+                  { href: '#email-compose', Icon: Mail, name: "Email" },
                 ].map(({ href, Icon, name }, idx) => (
                   <a key={idx} href={href} target="_blank" rel="noopener noreferrer" aria-label={name}
                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-full glass flex items-center justify-center text-white/80 hover:text-[var(--accent)] hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/10 hover:shadow-[0_0_20px_rgba(103,232,249,0.135)] hover:scale-110 transition-all duration-500 no-underline border-white/[0.08] z-20 relative"
-                     onClick={() => trackEvent('social_click', { placement: 'hero', network: name })}>
+                     onClick={name === 'Email' ? handleEmailClick : () => trackEvent('social_click', { placement: 'hero', network: name })}>
                     <Icon size={22} />
                   </a>
                 ))}
