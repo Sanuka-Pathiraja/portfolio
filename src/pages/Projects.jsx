@@ -61,6 +61,99 @@ export default function Projects() {
     })),
   }
 
+  const renderProjectCard = (proj) => (
+    <motion.div
+      key={proj.id}
+      variants={firstViewCardItem}
+      className="glass-content group p-5 sm:p-7 md:p-10 flex flex-col relative overflow-hidden border-white/[0.08] hover:border-white/[0.14]"
+    >
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute top-0 right-0 w-40 h-40 bg-cyan-400/[0.03] rounded-full blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+      <div className="flex items-start justify-between mb-6 relative z-10">
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-white/15 glass-sm px-3 py-1 border-white/[0.04] group-hover:text-white/30 group-hover:border-white/[0.08] transition-all">
+            {proj.type}
+          </span>
+        </div>
+        <div className="flex gap-2">
+          {proj.github && (
+            <a
+              href={proj.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-white/15 hover:text-white/50 border-white/[0.04] hover:border-white/[0.1] transition-all duration-300"
+              aria-label={`Open ${proj.title} repository`}
+              onClick={() => trackEvent('project_repo_click', { projectId: proj.id })}
+            >
+              <Github size={15} />
+            </a>
+          )}
+          {proj.live && (
+            <a
+              href={proj.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 hover:text-[var(--accent)] border-white/[0.04] hover:border-[rgba(103,232,249,0.15)] transition-all duration-300"
+              aria-label={`Open ${proj.title} live site`}
+              onClick={() => trackEvent('project_live_click', { projectId: proj.id })}
+            >
+              <ExternalLink size={15} />
+            </a>
+          )}
+        </div>
+      </div>
+
+      <div className="mb-4 relative z-10 flex flex-col gap-2">
+        <h2 className="font-display text-2xl font-bold text-white/80 group-hover:text-white tracking-tight transition-colors">
+          {proj.title}
+        </h2>
+        {proj.role && (
+          <span className="font-mono text-[10px] uppercase font-bold tracking-[0.1em] text-[var(--accent)]/90">
+            {proj.role}
+          </span>
+        )}
+      </div>
+      <p className="text-[15px] text-white/25 font-light leading-relaxed mb-8 flex-grow relative z-10">
+        {proj.desc}
+      </p>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6 relative z-10">
+        {proj.metrics?.map((metric) => (
+          <div key={metric.label} className="rounded-xl border border-white/[0.1] bg-black/55 backdrop-blur-md px-3 py-2">
+            <p className="font-mono text-[9px] tracking-[0.15em] uppercase text-white/25">{metric.label}</p>
+            <p className="text-[12px] text-white/70 mt-1">{metric.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <ul className="list-disc pl-5 mb-6 text-[13px] text-[color:var(--text-tertiary)] space-y-1 relative z-10">
+        {proj.outcomes?.slice(0, 2).map((outcome) => (
+          <li key={outcome}>{outcome}</li>
+        ))}
+      </ul>
+
+      <div className="relative z-10 mb-2">
+        <Link
+          to={`/projects/${proj.id}`}
+          className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-4 py-2 rounded-full glass-sm bg-black/45 border border-white/[0.1] no-underline text-white/80 hover:text-white hover:border-white/[0.2] transition-colors"
+          aria-label={`Read case study for ${proj.title}`}
+          onClick={() => trackEvent('project_case_study_click', { projectId: proj.id })}
+        >
+          Read Case Study <ExternalLink size={13} />
+        </Link>
+      </div>
+
+      <div className="flex flex-wrap gap-2 pt-6 border-t border-white/[0.04] relative z-10">
+        {proj.stack.map((tech) => (
+          <span key={tech} className="font-mono text-[9px] font-bold tracking-[0.15em] uppercase text-white/25 glass-sm bg-black/45 border border-white/[0.08] px-3 py-1 group-hover:text-white/40 transition-colors">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  )
+
   return (
     <motion.div initial="hidden" animate="show" exit={{ opacity: 0 }}>
       <SEO
@@ -89,7 +182,7 @@ export default function Projects() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 relative z-10"
+              className="grid grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 relative z-10"
             >
               
               {TECH_ICONS.map((tech, idx) => (
@@ -165,107 +258,26 @@ export default function Projects() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.16 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
+          className="md:hidden"
         >
-
-          {PROJECTS.map((proj, i) => (
-            <motion.div
-              key={proj.id}
-              variants={firstViewCardItem}
-              className="glass-content group p-5 sm:p-7 md:p-10 flex flex-col relative overflow-hidden border-white/[0.08] hover:border-white/[0.14]"
-            >
-              {/* Top edge light */}
-              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              {/* Ambient glow on hover */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-cyan-400/[0.03] rounded-full blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-              {/* Header */}
-              <div className="flex items-start justify-between mb-6 relative z-10">
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-[10px] font-bold tracking-[0.2em] uppercase text-white/15 glass-sm px-3 py-1 border-white/[0.04] group-hover:text-white/30 group-hover:border-white/[0.08] transition-all">
-                    {proj.type}
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  {proj.github && (
-                    <a
-                      href={proj.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-white/15 hover:text-white/50 border-white/[0.04] hover:border-white/[0.1] transition-all duration-300"
-                      aria-label={`Open ${proj.title} repository`}
-                      onClick={() => trackEvent('project_repo_click', { projectId: proj.id })}
-                    >
-                      <Github size={15} />
-                    </a>
-                  )}
-                  {proj.live && (
-                    <a
-                      href={proj.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 hover:text-[var(--accent)] border-white/[0.04] hover:border-[rgba(103,232,249,0.15)] transition-all duration-300"
-                      aria-label={`Open ${proj.title} live site`}
-                      onClick={() => trackEvent('project_live_click', { projectId: proj.id })}
-                    >
-                      <ExternalLink size={15} />
-                    </a>
-                  )}
-                </div>
+          <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-white/30 mb-3">Swipe Through Projects</p>
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar -mx-1 px-1">
+            {PROJECTS.map((proj) => (
+              <div key={proj.id} className="min-w-[88%] snap-center shrink-0">
+                {renderProjectCard(proj)}
               </div>
+            ))}
+          </div>
+        </motion.div>
 
-              {/* Content */}
-              <div className="mb-4 relative z-10 flex flex-col gap-2">
-                <h2 className="font-display text-2xl font-bold text-white/80 group-hover:text-white tracking-tight transition-colors">
-                  {proj.title}
-                </h2>
-                {proj.role && (
-                  <span className="font-mono text-[10px] uppercase font-bold tracking-[0.1em] text-[var(--accent)]/90">
-                    {proj.role}
-                  </span>
-                )}
-              </div>
-              <p className="text-[15px] text-white/25 font-light leading-relaxed mb-8 flex-grow relative z-10">
-                {proj.desc}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-6 relative z-10">
-                {proj.metrics?.map((metric) => (
-                  <div key={metric.label} className="rounded-xl border border-white/[0.1] bg-black/55 backdrop-blur-md px-3 py-2">
-                    <p className="font-mono text-[9px] tracking-[0.15em] uppercase text-white/25">{metric.label}</p>
-                    <p className="text-[12px] text-white/70 mt-1">{metric.value}</p>
-                  </div>
-                ))}
-              </div>
-
-              <ul className="list-disc pl-5 mb-6 text-[13px] text-[color:var(--text-tertiary)] space-y-1 relative z-10">
-                {proj.outcomes?.slice(0, 2).map((outcome) => (
-                  <li key={outcome}>{outcome}</li>
-                ))}
-              </ul>
-
-              <div className="relative z-10 mb-2">
-                <Link
-                  to={`/projects/${proj.id}`}
-                  className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-4 py-2 rounded-full glass-sm bg-black/45 border border-white/[0.1] no-underline text-white/80 hover:text-white hover:border-white/[0.2] transition-colors"
-                  aria-label={`Read case study for ${proj.title}`}
-                  onClick={() => trackEvent('project_case_study_click', { projectId: proj.id })}
-                >
-                  Read Case Study <ExternalLink size={13} />
-                </Link>
-              </div>
-
-              {/* Stack Tags */}
-              <div className="flex flex-wrap gap-2 pt-6 border-t border-white/[0.04] relative z-10">
-                {proj.stack.map(tech => (
-                  <span key={tech} className="font-mono text-[9px] font-bold tracking-[0.15em] uppercase text-white/25 glass-sm bg-black/45 border border-white/[0.08] px-3 py-1 group-hover:text-white/40 transition-colors">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        <motion.div
+          variants={firstViewCardGroup}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.16 }}
+          className="hidden md:grid grid-cols-2 gap-4 sm:gap-6"
+        >
+          {PROJECTS.map((proj) => renderProjectCard(proj))}
         </motion.div>
 
       </section>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { PROFILE } from '../../data/info'
 
 const links = [
@@ -16,8 +16,10 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
+  const prefersReducedMotion = useReducedMotion()
   const mobileMenuRef = useRef(null)
   const mobileToggleRef = useRef(null)
+  const scrollPositionRef = useRef(0)
 
   const isLinkActive = (to) => {
     if (to === '/') return location.pathname === '/'
@@ -26,7 +28,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30)
-    window.addEventListener('scroll', fn)
+    window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
@@ -35,11 +37,48 @@ export default function Navbar() {
   }, [location.pathname])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
+    const body = document.body
+    if (open) {
+      scrollPositionRef.current = window.scrollY
+      body.style.position = 'fixed'
+      body.style.top = `-${scrollPositionRef.current}px`
+      body.style.left = '0'
+      body.style.right = '0'
+      body.style.width = '100%'
+      body.style.overflow = 'hidden'
+    } else {
+      const previousScroll = scrollPositionRef.current
+      body.style.position = ''
+      body.style.top = ''
+      body.style.left = ''
+      body.style.right = ''
+      body.style.width = ''
+      body.style.overflow = ''
+      if (previousScroll > 0) {
+        window.scrollTo({ top: previousScroll, behavior: 'auto' })
+      }
+    }
+
     return () => {
-      document.body.style.overflow = ''
+      body.style.position = ''
+      body.style.top = ''
+      body.style.left = ''
+      body.style.right = ''
+      body.style.width = ''
+      body.style.overflow = ''
     }
   }, [open])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize, { passive: true })
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     if (!open) return undefined
@@ -83,7 +122,10 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 pt-3 md:pt-5 pointer-events-none">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 md:pt-5 pointer-events-none"
+      style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}
+    >
       <div className="section-max w-full flex items-center justify-between pointer-events-auto">
         
         {/* ── LEFT: Floating Logo Island ── */}
@@ -165,25 +207,47 @@ export default function Navbar() {
       </div>
 
       {/* ── MOBILE DROPDOWN ── */}
-      {open && (
-        <div ref={mobileMenuRef} id="mobile-menu" className="md:hidden absolute top-[calc(100%+10px)] left-3 right-3 sm:left-4 sm:right-4 glass-content rounded-2xl border border-white/[0.12] shadow-[0_30px_60px_rgba(0,0,0,0.65)] px-4 py-4 flex flex-col gap-2 z-50 pointer-events-auto">
-          {links.map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={to === '/'}
-              className={({ isActive }) =>
-                `text-[13px] font-mono tracking-[0.12em] uppercase py-3 px-4 rounded-xl no-underline transition-all ${
-                  isActive ? 'bg-[var(--accent)]/12 text-[var(--accent)] border border-[var(--accent)]/25' : 'text-white/65 hover:text-white hover:bg-white/[0.05] border border-transparent'
-                }`
-              }
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close mobile menu"
+              className="md:hidden fixed inset-0 bg-black/55 backdrop-blur-[1px] z-40 pointer-events-auto"
               onClick={() => setOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
+            />
+            <motion.div
+              ref={mobileMenuRef}
+              id="mobile-menu"
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -8, scale: prefersReducedMotion ? 1 : 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -8, scale: prefersReducedMotion ? 1 : 0.98 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: 'easeOut' }}
+              className="md:hidden absolute top-[calc(100%+10px)] left-3 right-3 sm:left-4 sm:right-4 glass-content rounded-2xl border border-white/[0.12] shadow-[0_30px_60px_rgba(0,0,0,0.65)] px-4 py-4 flex flex-col gap-2 z-50 pointer-events-auto"
             >
-              {label}
-            </NavLink>
-          ))}
-        </div>
-      )}
+              {links.map(({ to, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === '/'}
+                  className={({ isActive }) =>
+                    `text-[13px] font-mono tracking-[0.12em] uppercase py-3 px-4 rounded-xl no-underline transition-all ${
+                      isActive ? 'bg-[var(--accent)]/12 text-[var(--accent)] border border-[var(--accent)]/25' : 'text-white/65 hover:text-white hover:bg-white/[0.05] border border-transparent'
+                    }`
+                  }
+                  onClick={() => setOpen(false)}
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
