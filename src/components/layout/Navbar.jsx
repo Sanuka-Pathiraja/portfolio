@@ -84,11 +84,10 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 pt-3 md:pt-5 pointer-events-none">
-      <div className={`section-max w-full pointer-events-auto rounded-2xl md:rounded-3xl border transition-all duration-500 ${scrolled || open ? 'glass-nav border-white/[0.12] bg-black/75 shadow-[0_16px_40px_rgba(0,0,0,0.45)]' : 'border-white/[0.06] bg-black/45 backdrop-blur-xl'}`}>
-        <div className="flex items-center justify-between px-3 py-2 sm:px-4 sm:py-3">
+      <div className="section-max w-full flex items-center justify-between pointer-events-auto">
         
         {/* ── LEFT: Floating Logo Island ── */}
-        <div className="transition-all duration-300">
+        <div className={`transition-all duration-300 rounded-2xl border ${scrolled ? 'glass-nav bg-black/70 border-white/[0.12] shadow-[0_16px_34px_rgba(0,0,0,0.38)] px-3 py-2' : 'glass-sm bg-black/45 border-white/[0.08] px-2.5 py-1.5'}`}>
           <button
             type="button"
             onClick={handleBrandClick}
@@ -111,7 +110,7 @@ export default function Navbar() {
           
           {/* Navigation Dock (Desktop) */}
           <nav
-            className="hidden md:flex items-center gap-1.5 border rounded-full relative overflow-hidden px-2 py-1.5 border-white/[0.08] bg-white/[0.01] glass-sm"
+            className={`hidden md:flex items-center gap-1.5 border rounded-full relative overflow-hidden px-2 py-1.5 transition-all duration-300 ${scrolled ? 'glass-nav bg-black/70 border-white/[0.12] shadow-[0_16px_34px_rgba(0,0,0,0.38)]' : 'glass-sm border-white/[0.08] bg-white/[0.01]'}`}
           >
             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.18] to-transparent pointer-events-none" />
 
@@ -149,7 +148,7 @@ export default function Navbar() {
             type="button"
             ref={mobileToggleRef}
             className={`md:hidden relative w-11 h-11 rounded-2xl flex items-center justify-center text-white/70 hover:text-white border transition-all shrink-0 ${
-              scrolled || open ? 'glass-nav bg-black/60 shadow-lg border-white/[0.1]' : 'glass-sm border-white/[0.05] bg-white/[0.02]'
+              scrolled || open ? 'glass-nav bg-black/65 shadow-lg border-white/[0.12]' : 'glass-sm border-white/[0.06] bg-white/[0.02]'
             }`}
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
@@ -162,7 +161,6 @@ export default function Navbar() {
             </svg>
           </button>
 
-        </div>
         </div>
       </div>
 
