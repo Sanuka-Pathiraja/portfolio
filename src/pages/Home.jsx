@@ -204,9 +204,9 @@ export default function Home() {
               <div className="h-[2px] w-16 bg-gradient-to-r from-[var(--accent)]/20 to-transparent rounded-full mt-8"></div>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               {/* ── Soft Skills ── */}
-              <motion.div variants={fade} custom={8} className="glass-content p-8 md:p-10 relative overflow-hidden group">
+              <motion.div variants={fade} custom={8} className="glass-content p-5 sm:p-8 md:p-10 relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -228,7 +228,7 @@ export default function Home() {
               </motion.div>
 
               {/* ── Community ── */}
-              <motion.div variants={fade} custom={9} className="glass-content p-8 md:p-10 relative overflow-hidden group">
+              <motion.div variants={fade} custom={9} className="glass-content p-5 sm:p-8 md:p-10 relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-9 h-9 rounded-[12px] glass-sm flex items-center justify-center text-[var(--accent)]/40 border-white/[0.04]">
@@ -253,7 +253,7 @@ export default function Home() {
             <motion.div variants={fade} custom={10} className="glass-content p-7 md:p-9 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute -right-20 -top-20 w-52 h-52 rounded-full bg-[var(--accent)]/[0.05] blur-[60px] pointer-events-none"></div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 relative z-10">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 relative z-10">
                 <div className="rounded-2xl border border-white/[0.05] bg-white/[0.01] p-5 md:p-6">
                   <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/20">Focus</p>
                   <p className="font-display text-[18px] md:text-[20px] text-white/80 mt-2">Engineering + Delivery</p>
@@ -288,7 +288,7 @@ export default function Home() {
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[var(--accent)]/40"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-2 gap-4 lg:gap-6 items-stretch">
             {/* University */}
             <motion.div variants={fade} custom={12} className="glass-content flex flex-col relative overflow-hidden group h-full hover:border-[var(--accent)]/20 transition-colors duration-500">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.1] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>

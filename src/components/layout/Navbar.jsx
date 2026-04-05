@@ -17,7 +17,6 @@ export default function Navbar() {
   const location = useLocation()
   const navigate = useNavigate()
   const prefersReducedMotion = useReducedMotion()
-  const mobileMenuRef = useRef(null)
   const mobileToggleRef = useRef(null)
   const scrollPositionRef = useRef(0)
 
@@ -89,28 +88,18 @@ export default function Navbar() {
       }
     }
 
-    const handlePointerDown = (event) => {
-      const menuEl = mobileMenuRef.current
-      const toggleEl = mobileToggleRef.current
-
-      if (!menuEl || !toggleEl) return
-
-      const clickedInsideMenu = menuEl.contains(event.target)
-      const clickedToggle = toggleEl.contains(event.target)
-
-      if (!clickedInsideMenu && !clickedToggle) {
-        setOpen(false)
-      }
-    }
-
     document.addEventListener('keydown', handleKeyDown)
-    document.addEventListener('pointerdown', handlePointerDown)
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('pointerdown', handlePointerDown)
     }
   }, [open])
+
+  const closeMenu = () => setOpen(false)
+
+  const toggleMenu = () => {
+    setOpen((prev) => !prev)
+  }
 
   const handleBrandClick = () => {
     if (location.pathname !== '/') {
@@ -189,10 +178,10 @@ export default function Navbar() {
           <button
             type="button"
             ref={mobileToggleRef}
-            className={`md:hidden relative w-11 h-11 rounded-2xl flex items-center justify-center text-white/70 hover:text-white border transition-all shrink-0 ${
+            className={`md:hidden relative w-11 h-11 rounded-2xl flex items-center justify-center text-white/70 hover:text-white border transition-all shrink-0 touch-manipulation ${
               scrolled || open ? 'glass-nav bg-black/65 shadow-lg border-white/[0.12]' : 'glass-sm border-white/[0.06] bg-white/[0.02]'
             }`}
-            onClick={() => setOpen(!open)}
+            onClick={toggleMenu}
             aria-label="Toggle menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -214,20 +203,19 @@ export default function Navbar() {
               type="button"
               aria-label="Close mobile menu"
               className="md:hidden fixed inset-0 bg-black/55 backdrop-blur-[1px] z-40 pointer-events-auto"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
             />
             <motion.div
-              ref={mobileMenuRef}
               id="mobile-menu"
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -8, scale: prefersReducedMotion ? 1 : 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -8, scale: prefersReducedMotion ? 1 : 0.98 }}
               transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: 'easeOut' }}
-              className="md:hidden absolute top-[calc(100%+10px)] left-3 right-3 sm:left-4 sm:right-4 glass-content rounded-2xl border border-white/[0.12] shadow-[0_30px_60px_rgba(0,0,0,0.65)] px-4 py-4 flex flex-col gap-2 z-50 pointer-events-auto"
+              className="md:hidden fixed top-[calc(env(safe-area-inset-top)+4.5rem)] left-3 right-3 sm:left-4 sm:right-4 glass-content rounded-2xl border border-white/[0.12] shadow-[0_30px_60px_rgba(0,0,0,0.65)] px-4 py-4 flex flex-col gap-2 z-50 pointer-events-auto max-h-[calc(100dvh-env(safe-area-inset-top)-5.5rem)] overflow-y-auto overscroll-contain"
             >
               {links.map(({ to, label }) => (
                 <NavLink
@@ -235,11 +223,11 @@ export default function Navbar() {
                   to={to}
                   end={to === '/'}
                   className={({ isActive }) =>
-                    `text-[13px] font-mono tracking-[0.12em] uppercase py-3 px-4 rounded-xl no-underline transition-all ${
+                    `touch-manipulation text-[13px] font-mono tracking-[0.12em] uppercase py-3 px-4 rounded-xl no-underline transition-all ${
                       isActive ? 'bg-[var(--accent)]/12 text-[var(--accent)] border border-[var(--accent)]/25' : 'text-white/65 hover:text-white hover:bg-white/[0.05] border border-transparent'
                     }`
                   }
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenu}
                 >
                   {label}
                 </NavLink>

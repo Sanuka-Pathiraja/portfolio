@@ -176,20 +176,20 @@ export default function Projects() {
           </div>
 
           {/* The Cupboard Container */}
-          <div className="glass p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-[28px] md:rounded-[36px] border-white/[0.04] shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] relative">
+          <div className="glass p-3 sm:p-6 md:p-8 rounded-2xl sm:rounded-[28px] md:rounded-[36px] border-white/[0.04] shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] relative">
             <motion.div
               variants={firstViewCardGroup}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="grid grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 relative z-10"
+              className="grid grid-cols-6 gap-2 sm:gap-3 md:gap-4 relative z-10"
             >
               
               {TECH_ICONS.map((tech, idx) => (
                 <motion.div
                   key={tech.name}
                   variants={firstViewCardItem}
-                  className="bg-black/60 border border-white/[0.03] p-4 sm:p-5 md:p-6 rounded-2xl flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-5 group hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/[0.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 relative overflow-hidden"
+                  className="bg-black/60 border border-white/[0.03] p-2.5 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center gap-2.5 sm:gap-4 md:gap-5 group hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/[0.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 relative overflow-hidden"
                 >
                   {/* Top glass reflection line for physical cube authentic feel */}
                   <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-white/[0.15] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -202,7 +202,7 @@ export default function Projects() {
                     />
                   </div>
                   
-                  <span className="font-mono text-[9px] font-bold tracking-[0.2em] uppercase text-white/30 group-hover:text-white transition-colors z-10">
+                  <span className="font-mono text-[8px] sm:text-[9px] font-bold tracking-[0.14em] sm:tracking-[0.2em] uppercase text-white/30 group-hover:text-white transition-colors z-10 text-center leading-tight">
                     {tech.name}
                   </span>
                 </motion.div>
@@ -258,24 +258,7 @@ export default function Projects() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.16 }}
-          className="md:hidden"
-        >
-          <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-white/30 mb-3">Swipe Through Projects</p>
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar -mx-1 px-1">
-            {PROJECTS.map((proj) => (
-              <div key={proj.id} className="min-w-[88%] snap-center shrink-0">
-                {renderProjectCard(proj)}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          variants={firstViewCardGroup}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.16 }}
-          className="hidden md:grid grid-cols-2 gap-4 sm:gap-6"
+          className="grid grid-cols-2 gap-3 sm:gap-6"
         >
           {PROJECTS.map((proj) => renderProjectCard(proj))}
         </motion.div>
