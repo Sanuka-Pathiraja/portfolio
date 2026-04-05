@@ -11,10 +11,9 @@ export default function Layout() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
 
     setAmbientEnabled(!prefersReducedMotion)
-    setMotionEffectsEnabled(!prefersReducedMotion && !isCoarsePointer)
+    setMotionEffectsEnabled(!prefersReducedMotion)
   }, [])
 
   useEffect(() => {

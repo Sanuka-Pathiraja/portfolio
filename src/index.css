@@ -334,10 +334,6 @@ body {
     opacity: 0.08;
   }
 
-  .shooting-star,
-  .shooting-rain {
-    display: none !important;
-  }
 }
 
 @media (max-width: 420px) {
@@ -378,11 +374,6 @@ body {
     opacity: 0.18;
   }
 
-  .shooting-star,
-  .shooting-rain {
-    display: none !important;
-  }
-
   .glass:hover,
   .glass-content:hover,
   .glass-sm:hover {
@@ -393,9 +384,7 @@ body {
   .animate-float-delayed,
   .animate-glow,
   .animate-marquee,
-  .ticker-track,
-  .shooting-star,
-  .shooting-rain__star {
+  .ticker-track {
     animation: none !important;
   }
 
