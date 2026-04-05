@@ -23,6 +23,13 @@ export default function App() {
   const location = useLocation()
 
   useEffect(() => {
+    // Always start each route at the top unless browser behavior is unavailable.
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [location.pathname])
+
+  useEffect(() => {
     let lenis
     let rafId
     let isMounted = true
