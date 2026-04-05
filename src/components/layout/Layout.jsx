@@ -5,6 +5,7 @@ import Footer from './Footer'
 
 export default function Layout() {
   const [ambientEnabled, setAmbientEnabled] = useState(false)
+  const [motionEffectsEnabled, setMotionEffectsEnabled] = useState(false)
   const [shootingStar, setShootingStar] = useState(null)
   const [shootingRain, setShootingRain] = useState(null)
 
@@ -12,14 +13,15 @@ export default function Layout() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
 
-    setAmbientEnabled(!prefersReducedMotion && !isCoarsePointer)
+    setAmbientEnabled(!prefersReducedMotion)
+    setMotionEffectsEnabled(!prefersReducedMotion && !isCoarsePointer)
   }, [])
 
   useEffect(() => {
     let rainCleanupTimer
     let rainIntervalId
 
-    if (!ambientEnabled) {
+    if (!motionEffectsEnabled) {
       setShootingStar(null)
       setShootingRain(null)
       return undefined
@@ -104,7 +106,7 @@ export default function Layout() {
       clearInterval(intervalId)
       if (rainCleanupTimer) clearTimeout(rainCleanupTimer)
     }
-  }, [ambientEnabled])
+  }, [motionEffectsEnabled])
 
   return (
     <div className="flex flex-col min-h-screen bg-black relative overflow-hidden">
@@ -118,7 +120,7 @@ export default function Layout() {
       {ambientEnabled && <div className="stars-layer stars-1"></div>}
       {ambientEnabled && <div className="stars-layer stars-2"></div>}
       {ambientEnabled && <div className="stars-layer stars-3"></div>}
-      {ambientEnabled && shootingStar && (
+      {motionEffectsEnabled && shootingStar && (
         <div
           key={shootingStar.id}
           className="shooting-star"
@@ -127,7 +129,7 @@ export default function Layout() {
           aria-hidden="true"
         />
       )}
-      {ambientEnabled && shootingRain && (
+      {motionEffectsEnabled && shootingRain && (
         <div className="shooting-rain" aria-hidden="true" key={shootingRain.id}>
           {shootingRain.stars.map((star, index) => (
             <span

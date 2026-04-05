@@ -23,11 +23,22 @@ export default function App() {
   const location = useLocation()
 
   useEffect(() => {
-    // Always start each route at the top unless browser behavior is unavailable.
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-    document.documentElement.scrollTop = 0
-    document.body.scrollTop = 0
-  }, [location.pathname])
+    const resetToTop = () => {
+      const lenis = window.__lenis
+      if (lenis?.scrollTo) {
+        lenis.scrollTo(0, { immediate: true, force: true })
+      }
+
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }
+
+    resetToTop()
+    const rafId = requestAnimationFrame(resetToTop)
+
+    return () => cancelAnimationFrame(rafId)
+  }, [location.key])
 
   useEffect(() => {
     let lenis
@@ -49,6 +60,8 @@ export default function App() {
         touchMultiplier: 1.1,
       })
 
+      window.__lenis = lenis
+
       const raf = (time) => {
         lenis.raf(time)
         rafId = requestAnimationFrame(raf)
@@ -61,6 +74,9 @@ export default function App() {
       isMounted = false
       if (rafId) cancelAnimationFrame(rafId)
       if (lenis) lenis.destroy()
+      if (window.__lenis === lenis) {
+        window.__lenis = null
+      }
     }
   }, [])
 

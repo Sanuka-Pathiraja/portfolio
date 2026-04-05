@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { PROFILE } from '../../data/info'
 
@@ -15,7 +15,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
-  const navigate = useNavigate()
   const prefersReducedMotion = useReducedMotion()
   const mobileToggleRef = useRef(null)
   const scrollPositionRef = useRef(0)
@@ -102,12 +101,13 @@ export default function Navbar() {
   }
 
   const handleBrandClick = () => {
-    if (location.pathname !== '/') {
-      navigate('/')
-      return
+    closeMenu()
+    const lenis = window.__lenis
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(0, { immediate: !!prefersReducedMotion, force: true })
+    } else {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
     }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
