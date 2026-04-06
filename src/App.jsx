@@ -44,11 +44,32 @@ export default function App() {
     let lenis
     let rafId
     let isMounted = true
+    let edgeSettleTimer
 
     const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (shouldReduceMotion) {
       return undefined
     }
+
+    const settleToTopEdge = () => {
+      if (edgeSettleTimer) clearTimeout(edgeSettleTimer)
+
+      edgeSettleTimer = setTimeout(() => {
+        const topOffset = window.scrollY || document.documentElement.scrollTop || 0
+
+        // If the user stops very close to the top, settle to the true top position.
+        if (topOffset > 0 && topOffset < 140) {
+          const activeLenis = window.__lenis
+          if (activeLenis?.scrollTo) {
+            activeLenis.scrollTo(0, { duration: 0.45, force: true })
+          } else {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+          }
+        }
+      }, 110)
+    }
+
+    window.addEventListener('scroll', settleToTopEdge, { passive: true })
 
     import('lenis').then(({ default: Lenis }) => {
       if (!isMounted) return
@@ -72,6 +93,8 @@ export default function App() {
 
     return () => {
       isMounted = false
+      if (edgeSettleTimer) clearTimeout(edgeSettleTimer)
+      window.removeEventListener('scroll', settleToTopEdge)
       if (rafId) cancelAnimationFrame(rafId)
       if (lenis) lenis.destroy()
       if (window.__lenis === lenis) {
