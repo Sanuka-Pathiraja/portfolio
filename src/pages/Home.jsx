@@ -1,21 +1,15 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, Github, Linkedin, Mail, Sparkles, Hash, Users, GraduationCap } from 'lucide-react'
-import { ABOUT_CONTENT, PROFILE } from '../data/info'
+import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react'
+import { PROFILE } from '../data/info'
 import heroImg from '../assets/WhatsApp Image 2025-08-20 at 07.35.09_aee5bf85.jpg'
-import universityImg from '../assets/university.png'
-import schoolImg from '../assets/school (2).png'
-import ieeeImg from '../assets/IEEE.png'
-import toastmasterImg from '../assets/new_TM_logo.png'
-import iitImg from '../assets/IIT.png'
-import uowImg from '../assets/school.png'
 import SEO from '../components/seo/SEO'
 import { trackEvent } from '../utils/analytics'
 import SafeImage from '../components/ui/SafeImage'
 import useMobileLayout from '../utils/useMobileLayout'
 
 const fade = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: -24 },
   show: (i = 0) => ({
     opacity: 1, y: 0,
     transition: { delay: i * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }
@@ -38,6 +32,15 @@ const firstViewCardItem = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+  },
+}
+
+const pageIntro = {
+  hidden: { opacity: 0, y: -28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.05, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
@@ -71,7 +74,7 @@ export default function Home() {
 
   if (isMobile) {
     return (
-      <motion.div initial={false} animate="show" exit={{ opacity: 0 }} className="mobile-home">
+      <motion.div variants={pageIntro} initial="hidden" animate="show" exit={{ opacity: 0 }} className="mobile-home">
         <SEO
           title="Portfolio"
           description="F1-inspired engineering portfolio featuring full-stack projects, case studies, and internship availability."
@@ -120,69 +123,12 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <section className="section-max mobile-home__section">
-          <h2 className="mobile-home__section-title">Core Strengths</h2>
-          <div className="mobile-home__stack">
-            {ABOUT_CONTENT.softSkills.map((skill) => (
-              <article key={skill.name} className="mobile-home__stack-card glass-sm">
-                <h3>{skill.name}</h3>
-                <p>{skill.desc}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-max mobile-home__section">
-          <h2 className="mobile-home__section-title">Community & Education</h2>
-          <div className="mobile-home__community glass-content">
-            {ABOUT_CONTENT.community.map((community) => (
-              <div key={community.name} className="mobile-home__community-row">
-                <p className="mobile-home__community-name">{community.name}</p>
-                <p className="mobile-home__community-desc">{community.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mobile-home__edu-grid">
-            <article className="mobile-home__edu-card glass-content">
-              <SafeImage src={universityImg} alt="University of Westminster" className="mobile-home__edu-image" />
-              <div>
-                <p className="mobile-home__edu-label">Undergraduate</p>
-                <h3>University of Westminster</h3>
-              </div>
-            </article>
-            <article className="mobile-home__edu-card glass-content">
-              <SafeImage src={schoolImg} alt="De Mazenod College" className="mobile-home__edu-image" />
-              <div>
-                <p className="mobile-home__edu-label">Foundations</p>
-                <h3>De Mazenod College</h3>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section className="section-max mobile-home__section mobile-home__logos-wrap">
-          <h2 className="mobile-home__section-title">Affiliations</h2>
-          <div className="mobile-home__logos">
-            {[
-              { img: iitImg, name: 'IIT' },
-              { img: uowImg, name: 'UoW' },
-              { img: ieeeImg, name: 'IEEE' },
-              { img: toastmasterImg, name: 'Toastmasters' },
-            ].map((org) => (
-              <div key={org.name} className="mobile-home__logo-card glass-sm">
-                <SafeImage src={org.img} alt={org.name} className="mobile-home__logo" />
-              </div>
-            ))}
-          </div>
-        </section>
       </motion.div>
     )
   }
 
   return (
-    <motion.div initial={false} animate="show" exit={{ opacity: 0 }} className="relative">
+    <motion.div variants={pageIntro} initial="hidden" animate="show" exit={{ opacity: 0 }} className="relative">
       <SEO
         title="Portfolio"
         description="F1-inspired engineering portfolio featuring full-stack projects, case studies, and internship availability."

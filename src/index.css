@@ -407,7 +407,7 @@ body {
     background: linear-gradient(180deg, rgba(12, 16, 22, 0.96), rgba(8, 10, 16, 0.9));
     padding: 6px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 6px;
   }
 

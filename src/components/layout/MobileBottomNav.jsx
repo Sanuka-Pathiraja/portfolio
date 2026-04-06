@@ -1,12 +1,10 @@
 import { NavLink } from 'react-router-dom'
-import { Home, FolderKanban, UserCircle2, Mail, FileText } from 'lucide-react'
+import { Home, FolderKanban, Mail } from 'lucide-react'
 
 const mobileLinks = [
   { to: '/', label: 'Home', Icon: Home, end: true },
   { to: '/projects', label: 'Projects', Icon: FolderKanban },
-  { to: '/about', label: 'About', Icon: UserCircle2 },
   { to: '/contact', label: 'Contact', Icon: Mail },
-  { to: '/resume', label: 'Resume', Icon: FileText },
 ]
 
 export default function MobileBottomNav() {
