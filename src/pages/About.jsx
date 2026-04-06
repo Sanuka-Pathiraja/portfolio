@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Sparkles, Hash, Users, Heart, GraduationCap } from 'lucide-react'
+import { Sparkles, Hash, Users, GraduationCap } from 'lucide-react'
 import { ABOUT_CONTENT } from '../data/info'
 import SEO from '../components/seo/SEO'
 import SafeImage from '../components/ui/SafeImage'
@@ -15,8 +15,6 @@ const fade = {
     transition: { delay: i * 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }
   })
 }
-
-const sectionIcons = [Sparkles, Hash, Users, Heart]
 
 export default function About() {
   const isMobile = useMobileLayout()
@@ -79,17 +77,6 @@ export default function About() {
             </div>
           </article>
 
-          <article className="mobile-about__card glass-content">
-            <div className="mobile-about__card-head">
-              <Heart size={16} />
-              <h2>Interests</h2>
-            </div>
-            <div className="mobile-about__chips">
-              {ABOUT_CONTENT.interests.map((interest) => (
-                <span key={interest}>{interest}</span>
-              ))}
-            </div>
-          </article>
         </section>
 
         <section className="section-max mobile-about__education">
