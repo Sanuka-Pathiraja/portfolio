@@ -6,6 +6,7 @@ import { TECH_ICONS } from '../data/techIcons'
 import SEO from '../components/seo/SEO'
 import { trackEvent } from '../utils/analytics'
 import SafeImage from '../components/ui/SafeImage'
+import useMobileLayout from '../utils/useMobileLayout'
 
 const fade = {
   hidden: { opacity: 0, y: 20 },
@@ -35,6 +36,8 @@ const firstViewCardItem = {
 }
 
 export default function Projects() {
+  const isMobile = useMobileLayout()
+
   const disciplines = [
     "Client-Server Architecture", 
     "Algorithm Design", 
@@ -59,6 +62,95 @@ export default function Projects() {
         description: project.desc,
       },
     })),
+  }
+
+  if (isMobile) {
+    return (
+      <motion.div initial="hidden" animate="show" exit={{ opacity: 0 }} className="mobile-projects">
+        <SEO
+          title="Projects"
+          description="Selected engineering projects with measurable outcomes and full case-study breakdowns."
+          path="/projects"
+          jsonLd={projectListSchema}
+        />
+
+        <section className="section-max mobile-projects__hero">
+          <span className="mobile-projects__eyebrow">Project Portfolio</span>
+          <h1>Builds Optimized for Delivery</h1>
+          <p>
+            Swipe-friendly cards focused on outcomes, stack choices, and clear next steps.
+          </p>
+          <div className="mobile-projects__chips">
+            {disciplines.slice(0, 5).map((discipline) => (
+              <span key={discipline}>{discipline}</span>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-max mobile-projects__grid">
+          {PROJECTS.map((proj) => (
+            <article key={proj.id} className="mobile-projects__card glass-content">
+              <div className="mobile-projects__card-head">
+                <span>{proj.type}</span>
+                <p>{proj.timeline}</p>
+              </div>
+
+              <h2>{proj.title}</h2>
+              <p className="mobile-projects__role">{proj.role}</p>
+              <p className="mobile-projects__desc">{proj.desc}</p>
+
+              <div className="mobile-projects__metrics">
+                {(proj.metrics || []).slice(0, 2).map((metric) => (
+                  <div key={metric.label}>
+                    <span>{metric.label}</span>
+                    <strong>{metric.value}</strong>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mobile-projects__stack">
+                {proj.stack.slice(0, 4).map((tech) => (
+                  <span key={tech}>{tech}</span>
+                ))}
+              </div>
+
+              <div className="mobile-projects__actions">
+                <Link to={`/projects/${proj.id}`}>Case Study</Link>
+                {proj.github && (
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('project_repo_click', { projectId: proj.id, placement: 'mobile_card' })}
+                  >
+                    Repo
+                  </a>
+                )}
+                {proj.live && (
+                  <a
+                    href={proj.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('project_live_click', { projectId: proj.id, placement: 'mobile_card' })}
+                  >
+                    Live
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </section>
+
+        <section className="section-max mobile-projects__toolbox">
+          <h2>Toolbox</h2>
+          <div>
+            {TECH_ICONS.map((tech) => (
+              <span key={tech.name}>{tech.name}</span>
+            ))}
+          </div>
+        </section>
+      </motion.div>
+    )
   }
 
   const renderProjectCard = (proj) => (

@@ -3,6 +3,7 @@ import { Sparkles, Hash, Users, Heart, GraduationCap } from 'lucide-react'
 import { ABOUT_CONTENT } from '../data/info'
 import SEO from '../components/seo/SEO'
 import SafeImage from '../components/ui/SafeImage'
+import useMobileLayout from '../utils/useMobileLayout'
 
 import universityImg from '../assets/university.png'
 import schoolImg from '../assets/school (2).png'
@@ -18,6 +19,105 @@ const fade = {
 const sectionIcons = [Sparkles, Hash, Users, Heart]
 
 export default function About() {
+  const isMobile = useMobileLayout()
+
+  if (isMobile) {
+    return (
+      <motion.div initial="hidden" animate="show" exit={{ opacity: 0 }} className="mobile-about">
+        <SEO
+          title="About"
+          description="Personal journey, strengths, community work, and educational background of Sanuka Pathiraja."
+          path="/about"
+        />
+
+        <section className="section-max mobile-about__hero">
+          <p className="mobile-about__eyebrow">Personal Story</p>
+          <h1>
+            Beyond the <span>Binary</span>
+          </h1>
+          <p>
+            The intersection of elegant design and system mechanics.
+          </p>
+        </section>
+
+        <section className="section-max mobile-about__cards">
+          <article className="mobile-about__card glass-content">
+            <div className="mobile-about__card-head">
+              <Sparkles size={16} />
+              <h2>{ABOUT_CONTENT.journey.title}</h2>
+            </div>
+            <p>{ABOUT_CONTENT.journey.content}</p>
+          </article>
+
+          <article className="mobile-about__card glass-content">
+            <div className="mobile-about__card-head">
+              <Hash size={16} />
+              <h2>Soft Skills</h2>
+            </div>
+            <div className="mobile-about__list">
+              {ABOUT_CONTENT.softSkills.map((skill) => (
+                <div key={skill.name}>
+                  <h3>{skill.name}</h3>
+                  <p>{skill.desc}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="mobile-about__card glass-content">
+            <div className="mobile-about__card-head">
+              <Users size={16} />
+              <h2>Community</h2>
+            </div>
+            <div className="mobile-about__list">
+              {ABOUT_CONTENT.community.map((community) => (
+                <div key={community.name}>
+                  <h3>{community.name}</h3>
+                  <p>{community.desc}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="mobile-about__card glass-content">
+            <div className="mobile-about__card-head">
+              <Heart size={16} />
+              <h2>Interests</h2>
+            </div>
+            <div className="mobile-about__chips">
+              {ABOUT_CONTENT.interests.map((interest) => (
+                <span key={interest}>{interest}</span>
+              ))}
+            </div>
+          </article>
+        </section>
+
+        <section className="section-max mobile-about__education">
+          <div className="mobile-about__edu-head">
+            <GraduationCap size={17} />
+            <h2>Education</h2>
+          </div>
+
+          <article className="mobile-about__edu-card glass-content">
+            <SafeImage src={universityImg} alt="University" className="mobile-about__edu-image" />
+            <div className="mobile-about__edu-content">
+              <p>Undergraduate</p>
+              <h3>University Experience</h3>
+            </div>
+          </article>
+
+          <article className="mobile-about__edu-card glass-content">
+            <SafeImage src={schoolImg} alt="School" className="mobile-about__edu-image" />
+            <div className="mobile-about__edu-content">
+              <p>Primary & Secondary</p>
+              <h3>School Alma Mater</h3>
+            </div>
+          </article>
+        </section>
+      </motion.div>
+    )
+  }
+
   return (
     <motion.div initial="hidden" animate="show" exit={{ opacity: 0 }}>
       <SEO

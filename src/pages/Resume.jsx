@@ -4,6 +4,7 @@ import { skills, timeline as experience } from '../data/projects'
 import { AVAILABILITY } from '../data/info'
 import SEO from '../components/seo/SEO'
 import { trackEvent } from '../utils/analytics'
+import useMobileLayout from '../utils/useMobileLayout'
 import './Resume.css'
 
 const educationItems = [
@@ -25,6 +26,104 @@ const resumeSkills = [
 ]
 
 export default function Resume() {
+  const isMobile = useMobileLayout()
+
+  if (isMobile) {
+    return (
+      <div className="mobile-resume">
+        <SEO
+          title="Resume"
+          description="Technical resume, skills, and internship availability for Sanuka Pathiraja."
+          path="/resume"
+        />
+
+        <section className="section-max mobile-resume__hero">
+          <p className="mobile-resume__eyebrow">Resume</p>
+          <h1>
+            Skills & <span>Experience</span>
+          </h1>
+          <p>
+            Internship-ready profile with practical delivery and full-stack engineering focus.
+          </p>
+          <div className="mobile-resume__availability">
+            {AVAILABILITY.badge} · {AVAILABILITY.internshipWindow}
+          </div>
+        </section>
+
+        <section className="section-max mobile-resume__actions">
+          <a
+            href="/resume-one-page.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent('resume_open_click', { format: 'print_html', placement: 'mobile' })}
+          >
+            <Download size={16} /> One-Page CV
+          </a>
+          <a
+            href="/resume-ats.txt"
+            download
+            onClick={() => trackEvent('resume_download_click', { format: 'ats_text', placement: 'mobile' })}
+          >
+            <FileText size={16} /> ATS Text
+          </a>
+          <Link to="/contact">
+            <ExternalLink size={16} /> Contact
+          </Link>
+        </section>
+
+        <section className="section-max mobile-resume__section glass-content">
+          <h2>Profile</h2>
+          <p>
+            Computer Science student with hands-on experience building full-stack web apps, mobile applications,
+            and algorithm implementations. Passionate about understanding systems deeply and building software
+            that solves real-world problems.
+          </p>
+        </section>
+
+        <section className="section-max mobile-resume__section glass-content">
+          <h2>Technical Skills</h2>
+          <div className="mobile-resume__skill-bars">
+            {resumeSkills.map(({ label, level }) => (
+              <div key={label} className="mobile-resume__skill-row">
+                <div>
+                  <span>{label}</span>
+                  <strong>{level}%</strong>
+                </div>
+                <div className="mobile-resume__track">
+                  <div style={{ width: `${level}%` }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-max mobile-resume__section glass-content">
+          <h2>Experience Highlights</h2>
+          <div className="mobile-resume__timeline">
+            {experience.map((item, index) => (
+              <article key={`${item.title}-${index}`}>
+                <header>
+                  <h3>{item.title}</h3>
+                  <span>{item.year}</span>
+                </header>
+                <p>{item.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-max mobile-resume__section glass-content">
+          <h2>Tech Stack</h2>
+          <div className="mobile-resume__chips">
+            {skills.flatMap((group) => group.items).slice(0, 18).map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        </section>
+      </div>
+    )
+  }
+
   return (
     <div className="resume-page">
       <SEO

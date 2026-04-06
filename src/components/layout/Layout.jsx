@@ -2,18 +2,34 @@ import { Outlet } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import MobileTopBar from './MobileTopBar'
+import MobileBottomNav from './MobileBottomNav'
 
 export default function Layout() {
   const [ambientEnabled, setAmbientEnabled] = useState(false)
   const [motionEffectsEnabled, setMotionEffectsEnabled] = useState(false)
   const [shootingStar, setShootingStar] = useState(null)
   const [shootingRain, setShootingRain] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)')
+    const updateViewport = () => setIsMobile(mediaQuery.matches)
+
+    updateViewport()
+    mediaQuery.addEventListener('change', updateViewport)
+
+    return () => {
+      mediaQuery.removeEventListener('change', updateViewport)
+    }
+  }, [])
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const smallScreen = window.matchMedia('(max-width: 767px)').matches
 
-    setAmbientEnabled(!prefersReducedMotion)
-    setMotionEffectsEnabled(!prefersReducedMotion)
+    setAmbientEnabled(!prefersReducedMotion && !smallScreen)
+    setMotionEffectsEnabled(!prefersReducedMotion && !smallScreen)
   }, [])
 
   useEffect(() => {
@@ -145,11 +161,11 @@ export default function Layout() {
         </div>
       )}
 
-      <Navbar />
-      <main id="main-content" className="flex-1 pt-[86px] sm:pt-[92px] md:pt-[96px] relative z-10" tabIndex={-1}>
+      {isMobile ? <MobileTopBar /> : <Navbar />}
+      <main id="main-content" className={`flex-1 relative z-10 ${isMobile ? 'pt-[72px] pb-[96px]' : 'pt-[86px] sm:pt-[92px] md:pt-[96px]'}`} tabIndex={-1}>
         <Outlet />
       </main>
-      <Footer />
+      {isMobile ? <MobileBottomNav /> : <Footer />}
     </div>
   )
 }

@@ -12,6 +12,7 @@ import uowImg from '../assets/school.png'
 import SEO from '../components/seo/SEO'
 import { trackEvent } from '../utils/analytics'
 import SafeImage from '../components/ui/SafeImage'
+import useMobileLayout from '../utils/useMobileLayout'
 
 const fade = {
   hidden: { opacity: 0, y: 30 },
@@ -41,6 +42,8 @@ const firstViewCardItem = {
 }
 
 export default function Home() {
+  const isMobile = useMobileLayout()
+
   const handleEmailClick = (event) => {
     event.preventDefault()
 
@@ -64,6 +67,118 @@ export default function Home() {
     jobTitle: PROFILE.role,
     email: PROFILE.email,
     sameAs: [PROFILE.github, PROFILE.linkedin],
+  }
+
+  if (isMobile) {
+    return (
+      <motion.div initial={false} animate="show" exit={{ opacity: 0 }} className="mobile-home">
+        <SEO
+          title="Portfolio"
+          description="F1-inspired engineering portfolio featuring full-stack projects, case studies, and internship availability."
+          path="/"
+          jsonLd={personSchema}
+        />
+
+        <section className="section-max mobile-home__hero">
+          <div className="mobile-home__hero-card glass-content">
+            <div className="mobile-home__avatar-wrap">
+              <SafeImage
+                src={heroImg}
+                alt={PROFILE.name}
+                loading="eager"
+                fetchPriority="high"
+                className="mobile-home__avatar"
+              />
+            </div>
+
+            <div>
+              <p className="mobile-home__eyebrow">Software Engineer</p>
+              <h1 className="mobile-home__title">{PROFILE.name}</h1>
+              <p className="mobile-home__role">{PROFILE.role}</p>
+              <p className="mobile-home__summary">{PROFILE.summary}</p>
+            </div>
+
+            <div className="mobile-home__actions">
+              <Link to="/projects" className="mobile-home__cta mobile-home__cta--primary">
+                View Projects <ArrowRight size={16} />
+              </Link>
+              <Link to="/contact" className="mobile-home__cta mobile-home__cta--secondary">
+                Start Conversation
+              </Link>
+            </div>
+
+            <div className="mobile-home__socials">
+              <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('social_click', { placement: 'mobile_home', network: 'GitHub' })}>
+                <Github size={16} /> GitHub
+              </a>
+              <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('social_click', { placement: 'mobile_home', network: 'LinkedIn' })}>
+                <Linkedin size={16} /> LinkedIn
+              </a>
+              <button type="button" onClick={handleEmailClick}>
+                <Mail size={16} /> Email
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-max mobile-home__section">
+          <h2 className="mobile-home__section-title">Core Strengths</h2>
+          <div className="mobile-home__stack">
+            {ABOUT_CONTENT.softSkills.map((skill) => (
+              <article key={skill.name} className="mobile-home__stack-card glass-sm">
+                <h3>{skill.name}</h3>
+                <p>{skill.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-max mobile-home__section">
+          <h2 className="mobile-home__section-title">Community & Education</h2>
+          <div className="mobile-home__community glass-content">
+            {ABOUT_CONTENT.community.map((community) => (
+              <div key={community.name} className="mobile-home__community-row">
+                <p className="mobile-home__community-name">{community.name}</p>
+                <p className="mobile-home__community-desc">{community.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mobile-home__edu-grid">
+            <article className="mobile-home__edu-card glass-content">
+              <SafeImage src={universityImg} alt="University of Westminster" className="mobile-home__edu-image" />
+              <div>
+                <p className="mobile-home__edu-label">Undergraduate</p>
+                <h3>University of Westminster</h3>
+              </div>
+            </article>
+            <article className="mobile-home__edu-card glass-content">
+              <SafeImage src={schoolImg} alt="De Mazenod College" className="mobile-home__edu-image" />
+              <div>
+                <p className="mobile-home__edu-label">Foundations</p>
+                <h3>De Mazenod College</h3>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section className="section-max mobile-home__section mobile-home__logos-wrap">
+          <h2 className="mobile-home__section-title">Affiliations</h2>
+          <div className="mobile-home__logos">
+            {[
+              { img: iitImg, name: 'IIT' },
+              { img: uowImg, name: 'UoW' },
+              { img: ieeeImg, name: 'IEEE' },
+              { img: toastmasterImg, name: 'Toastmasters' },
+            ].map((org) => (
+              <div key={org.name} className="mobile-home__logo-card glass-sm">
+                <SafeImage src={org.img} alt={org.name} className="mobile-home__logo" />
+              </div>
+            ))}
+          </div>
+        </section>
+      </motion.div>
+    )
   }
 
   return (

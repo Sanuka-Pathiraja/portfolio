@@ -4,6 +4,7 @@ import { Github, Linkedin, Mail, Phone, MapPin, Send } from 'lucide-react'
 import { PROFILE } from '../data/info'
 import SEO from '../components/seo/SEO'
 import { trackEvent } from '../utils/analytics'
+import useMobileLayout from '../utils/useMobileLayout'
 
 const fade = {
   hidden: { opacity: 0, y: 20 },
@@ -14,6 +15,7 @@ const fade = {
 }
 
 export default function Contact() {
+  const isMobile = useMobileLayout()
   const [submitState, setSubmitState] = useState({ type: '', message: '' })
 
   const openComposeFallback = (fullName, email, message, formEl) => {
@@ -68,6 +70,72 @@ export default function Contact() {
 
     trackEvent('contact_intent_submit', { source: 'contact_form' })
     openComposeFallback(fullName, email, message, e.currentTarget)
+  }
+
+  if (isMobile) {
+    return (
+      <motion.div initial="hidden" animate="show" exit={{ opacity: 0 }} className="mobile-contact">
+        <SEO
+          title="Contact"
+          description="Start a conversation about internship opportunities, projects, and engineering collaboration."
+          path="/contact"
+        />
+
+        <section className="section-max mobile-contact__hero">
+          <p className="mobile-contact__eyebrow">Get In Touch</p>
+          <h1>
+            Start a <span>Conversation</span>
+          </h1>
+          <p>
+            Open to internships and collaborative engineering opportunities.
+          </p>
+        </section>
+
+        <section className="section-max mobile-contact__quick-actions">
+          <a href={`mailto:${PROFILE.email}`} onClick={() => trackEvent('contact_detail_click', { label: 'Email' })}>
+            <Mail size={16} /> Email
+          </a>
+          <a href={`tel:${PROFILE.phone}`} onClick={() => trackEvent('contact_detail_click', { label: 'Phone' })}>
+            <Phone size={16} /> Call
+          </a>
+          <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('social_click', { placement: 'contact_mobile', network: 'LinkedIn' })}>
+            <Linkedin size={16} /> LinkedIn
+          </a>
+        </section>
+
+        <section className="section-max mobile-contact__form-wrap">
+          <form className="mobile-contact__form glass-content" onSubmit={handleSubmit}>
+            <label htmlFor="mobile-contact-name">Full Name</label>
+            <input id="mobile-contact-name" type="text" name="user_name" placeholder="Your name" required />
+
+            <label htmlFor="mobile-contact-email">Email</label>
+            <input id="mobile-contact-email" type="email" name="user_email" placeholder="you@example.com" required />
+
+            <label htmlFor="mobile-contact-message">Message</label>
+            <textarea id="mobile-contact-message" name="message" placeholder="Tell me about your project..." required />
+
+            {submitState.message ? (
+              <p aria-live="polite" className={`mobile-contact__status ${submitState.type === 'success' ? 'is-success' : 'is-error'}`}>
+                {submitState.message}
+              </p>
+            ) : null}
+
+            <button type="submit">
+              Send Message <Send size={16} />
+            </button>
+          </form>
+        </section>
+
+        <section className="section-max mobile-contact__meta glass-sm">
+          <p>
+            <MapPin size={15} /> Colombo, Sri Lanka
+          </p>
+          <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('social_click', { placement: 'contact_mobile', network: 'GitHub' })}>
+            <Github size={15} /> GitHub
+          </a>
+        </section>
+      </motion.div>
+    )
   }
 
   return (
