@@ -57,11 +57,11 @@ export default function App() {
       edgeSettleTimer = setTimeout(() => {
         const topOffset = window.scrollY || document.documentElement.scrollTop || 0
 
-        // If the user stops very close to the top, settle to the true top position.
-        if (topOffset > 0 && topOffset < 140) {
+        // Only settle when practically at the top edge to avoid pulling a good composition.
+        if (topOffset > 0 && topOffset < 20) {
           const activeLenis = window.__lenis
           if (activeLenis?.scrollTo) {
-            activeLenis.scrollTo(0, { duration: 0.45, force: true })
+            activeLenis.scrollTo(0, { duration: 0.26, force: true })
           } else {
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
           }
