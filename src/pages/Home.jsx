@@ -146,7 +146,7 @@ export default function Home() {
       <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-[var(--accent)]/[0.04] rounded-full blur-[150px] pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-500/[0.03] rounded-full blur-[150px] pointer-events-none"></div>
 
-      <section className="section-max pt-6 sm:pt-8 lg:pt-14 pb-14 sm:pb-20 relative z-10 section-rhythm-lg">
+      <section className="section-max pt-2 sm:pt-4 lg:pt-6 pb-14 sm:pb-20 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-16">
           
